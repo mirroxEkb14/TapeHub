@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TapeHubDemo.View.ProductsPage"
+             xmlns:vm="clr-namespace:TapeHubDemo.ViewModel"
+             xmlns:model="clr-namespace:TapeHubDemo.Model"
+             x:DataType="vm:ProductsPageViewModel"
+             Title="Products">
+    <StackLayout Padding="10">
+        <ListView ItemsSource="{Binding Products}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:Product">
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Padding="10">
+                            <Image Source="{Binding ImagePath}" HeightRequest="80" WidthRequest="80" />
+                            <StackLayout>
+                                <Label Text="{Binding Title}" FontSize="Medium" />
+                                <Label Text="{Binding Description}" FontSize="Small" />
+                                <Label Text="{Binding Price, StringFormat='Price: {0:C}'}" FontSize="Small" TextColor="Green" />
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

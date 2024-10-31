@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TapeHubDemo.View.ShopBranchesPage"
+             xmlns:vm="clr-namespace:TapeHubDemo.ViewModel"
+             xmlns:model="clr-namespace:TapeHubDemo.Model"
+             x:DataType="vm:ShopBranchesPageViewModel"
+             Title="Shop Branches">
+    <ContentPage.BindingContext>
+        <vm:ShopBranchesPageViewModel />
+    </ContentPage.BindingContext>
+
+    <CollectionView x:Name="ShopBranchesCollectionView"
+                    ItemsSource="{Binding Branches}"
+                    SelectionMode="Single"
+                    SelectionChanged="OnBranchSelected">
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="model:ShopBranch">
+                <Frame Padding="10" CornerRadius="10" BorderColor="LightGray">
+                    <StackLayout>
+                        <Image Source="{Binding ImagePath}" HeightRequest="100" />
+                        <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="18" />
+                        <Label Text="{Binding OpeningHours}" FontSize="14" />
+                        <Label Text="{Binding ClosingHours}" FontSize="14" />
+                    </StackLayout>
+                </Frame>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>

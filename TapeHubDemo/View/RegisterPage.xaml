@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TapeHubDemo.View.RegisterPage"
+             xmlns:vm="clr-namespace:TapeHubDemo.ViewModel"
+             x:DataType="vm:RegisterPageViewModel"
+             BackgroundColor="White"
+             Title="Welcome to TapeHub">
+
+    <VerticalStackLayout Padding="30" Spacing="15" VerticalOptions="Center">
+
+        <!-- Logo or App Title -->
+        <Label Text="TapeHub"
+               FontSize="36"
+               HorizontalOptions="Center"
+               FontAttributes="Bold"
+               TextColor="#6200EE"/>
+
+        <!-- Welcome Text -->
+        <Label Text="Login to Your Account"
+               FontSize="18"
+               HorizontalOptions="Center"
+               TextColor="Gray"/>
+
+        <!-- Username Entry -->
+        <Frame CornerRadius="25" HasShadow="False" Padding="10" BorderColor="#6200EE">
+            <Entry Placeholder="Username" 
+                   Text="{Binding Username}" 
+                   FontSize="16"
+                   Keyboard="Default"
+                   TextColor="Black"/>
+        </Frame>
+
+        <!-- Password Entry -->
+        <Frame CornerRadius="25" HasShadow="False" Padding="10" BorderColor="#6200EE">
+            <Entry Placeholder="Password" 
+                   Text="{Binding Password}" 
+                   IsPassword="True" 
+                   FontSize="16"
+                   TextColor="Black"/>
+        </Frame>
+
+        <!-- Login Button -->
+        <Button Text="Log In"
+                FontSize="18"
+                TextColor="White"
+                BackgroundColor="#6200EE"
+                CornerRadius="25"
+                Command="{Binding LogInCommand}"
+                Padding="15"
+                HorizontalOptions="FillAndExpand" />
+
+        <!-- Sign Up Button -->
+        <Button Text="Sign Up"
+                FontSize="18"
+                TextColor="White"
+                BackgroundColor="Gray"
+                CornerRadius="25"
+                Command="{Binding SignUpCommand}"
+                Padding="15"
+                HorizontalOptions="FillAndExpand" />
+
+        <!-- Forgot Password -->
+        <Label Text="Forgot your password?"
+               FontSize="14"
+               HorizontalOptions="Center"
+               TextColor="#6200EE"
+               FontAttributes="Bold">
+            
+            <!-- Correctly set up GestureRecognizers as a collection -->
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
+            </Label.GestureRecognizers>
+        </Label>
+
+    </VerticalStackLayout>
+</ContentPage>
