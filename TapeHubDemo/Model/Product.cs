@@ -10,10 +10,10 @@ public class Product
     public int ID { get; set; }
 
     [Column("title"), MaxLength(100)]
-    public string Title { get; set; }
+    public string? Title { get; set; }
 
     [Column("description"), MaxLength(500)]
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     [Column("price")]
     public double Price { get; set; }
@@ -22,7 +22,7 @@ public class Product
     public ProductType Type { get; set; }
 
     [Column("image_path")]
-    public string ImagePath { get; set; }
+    public string? ImagePath { get; set; }
 
     [Column("shop_branch_id")]
     public int ShopBranchID { get; set; }

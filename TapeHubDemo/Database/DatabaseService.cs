@@ -4,6 +4,9 @@ using Location = TapeHubDemo.Model.Location;
 
 namespace TapeHubDemo.Database;
 
+//
+// Summary:
+//     Provides DB-related operations, including DB initialization, table creation, and DB deletion.
 public class DatabaseService
 {
     private static SQLiteAsyncConnection? _database;

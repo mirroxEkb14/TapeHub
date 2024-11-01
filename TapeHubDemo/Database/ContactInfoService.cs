@@ -2,6 +2,9 @@
 
 namespace TapeHubDemo.Database;
 
+//
+// Summary:
+//     Provides basic CRUD operations (create, red, update, delete) for the «ContactInfo» model.
 public static class ContactInfoService
 {
     public static async Task<int> AddContactInfoAsync(ContactInfo contactInfo) =>

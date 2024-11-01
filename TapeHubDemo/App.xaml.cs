@@ -18,11 +18,10 @@ public partial class App : Application
 
     //
     // Summary:
-    //     Deletes the DB.
-    //     Initializes the DB.
+    //     Deletes and initializes the DB.
     private static async void OnLaunch()
     {
-        //DatabaseService.DeleteDatabase();
+        DatabaseService.DeleteDatabase();
         await DatabaseService.InitializeDatabase();
     }
 }

@@ -2,6 +2,9 @@
 
 namespace TapeHubDemo.Database;
 
+//
+// Summary:
+//     Provides basic CRUD operations (create, red, update, delete) for the «Location» model.
 public static class LocationService
 {
     public static async Task<int> AddLocationAsync(Location location) =>

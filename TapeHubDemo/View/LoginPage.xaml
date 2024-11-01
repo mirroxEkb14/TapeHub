@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TapeHubDemo.View.LoginPage"
+             xmlns:vm="clr-namespace:TapeHubDemo.ViewModel"
+             BackgroundColor="#F5F5DC">
+
+    <!-- Setting the data context (binding context) of this page to an instance of LoginViewModel -->
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel />
+    </ContentPage.BindingContext>
+
+    <!-- Disabling the back button in the navigation bar when navigating from the MainPage to the LoginPage -->
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" />
+    </Shell.BackButtonBehavior>
+
+    <StackLayout Padding="30" Spacing="20" VerticalOptions="Start">
+        <!-- App Logo -->
+        <Image Source="escape_logo.png" HeightRequest="170" HorizontalOptions="Center" />
+
+        <!-- Login Header -->
+        <Label Text="Login to Your Account"
+               FontSize="20"
+               FontAttributes="Bold"
+               TextColor="#8B4513"
+               HorizontalTextAlignment="Center" />
+
+        <!-- Username Entry -->
+        <Entry Placeholder="Username"
+               PlaceholderColor="#8B4513"
+               TextColor="#4A4A4A"
+               FontSize="16"
+               BackgroundColor="White"
+               Margin="0,10,0,0"
+               HeightRequest="50"
+               Text="{Binding Username, Mode=TwoWay}" />
+
+        <!-- Password Entry -->
+        <Entry Placeholder="Password"
+               PlaceholderColor="#8B4513"
+               TextColor="#4A4A4A"
+               FontSize="16"
+               IsPassword="True"
+               BackgroundColor="White"
+               HeightRequest="50"
+               Text="{Binding Password, Mode=TwoWay}" />
+
+        <!-- Error Message -->
+        <Label Text="{Binding ErrorMessage}"
+               TextColor="Red"
+               FontSize="14"
+               HorizontalOptions="Center"
+               IsVisible="{Binding ErrorMessage, Converter={StaticResource NullToVisibilityConverter}}" />
+
+        <!-- Login Button -->
+        <Button Text="Log In"
+                BackgroundColor="#8B4513"
+                TextColor="White"
+                FontAttributes="Bold"
+                CornerRadius="25"
+                HeightRequest="50"
+                HorizontalOptions="Fill"
+                Command="{Binding LoginCommand}" />
+
+        <!-- Forgot Password Link -->
+        <Label Text="Forgot your password?"
+               TextColor="#8B4513"
+               FontSize="14"
+               HorizontalOptions="Center"
+               Margin="0,10,0,0">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnForgotPasswordTapped" />
+            </Label.GestureRecognizers>
+        </Label>
+    </StackLayout>
+</ContentPage>

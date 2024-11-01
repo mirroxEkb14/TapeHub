@@ -10,10 +10,10 @@ public class User
     public int ID { get; set; }
 
     [Column("username"), MaxLength(100)]
-    public string Username { get; set; }
+    public string? Username { get; set; }
 
     [Column("password")]
-    public string Password { get; set; }
+    public string? Password { get; set; }
 
     [Column("role")]
     public UserRole Role { get; set; }

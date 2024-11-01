@@ -3,6 +3,9 @@ using TapeHubDemo.Model;
 
 namespace TapeHubDemo.Database;
 
+//
+// Summary:
+//     Provides basic CRUD operations (create, red, update, delete) for the «User» model.
 public static class UserService
 {
     public static async Task<int> AddUserAsync(User user)
@@ -48,6 +51,9 @@ public static class UserService
             await AddUserAsync(adminUser);
     }
 
+    //
+    // Summary:
+    //     Retrieves a user from the DB by matching the provided username and password.
     public static async Task<User> GetUserByUsernameAndPasswordAsync(string username, string password)
     {
         return await DatabaseService.GetDatabase()

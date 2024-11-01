@@ -9,18 +9,18 @@ public class Location
     public int ID { get; set; }
 
     [Column("country")]
-    public string Country { get; set; }
+    public string? Country { get; set; }
 
     [Column("city")]
-    public string City { get; set; }
+    public string? City { get; set; }
 
     [Column("street")]
-    public string Street { get; set; }
+    public string? Street { get; set; }
 
     [Column("number")]
     public int Number { get; set; }
 
     [Column("zip")]
-    public string ZIP { get; set; }
+    public string? ZIP { get; set; }
 }
 

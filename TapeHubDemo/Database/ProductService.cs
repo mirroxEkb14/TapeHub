@@ -3,6 +3,9 @@ using TapeHubDemo.Model;
 
 namespace TapeHubDemo.Database;
 
+//
+// Summary:
+//     Provides basic CRUD operations (create, red, update, delete) for the «Product» model.
 public static class ProductService
 {
     public static async Task<int> AddProductAsync(Product product) =>
@@ -49,6 +52,9 @@ public static class ProductService
             await AddProductAsync(product);
     }
 
+    //
+    // Summary:
+    //     Retrieves all products associated with a specific shop branch by branch ID.
     public static async Task<List<Product>> GetProductsByBranchIdAsync(int branchId)
     {
         var db = DatabaseService.GetDatabase();

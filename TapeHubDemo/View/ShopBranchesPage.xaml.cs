@@ -4,21 +4,20 @@ namespace TapeHubDemo.View;
 
 public partial class ShopBranchesPage : ContentPage
 {
-	public ShopBranchesPage()
-	{
+	public ShopBranchesPage() =>
 		InitializeComponent();
-        ShopBranchesCollectionView.SelectionChanged += OnBranchSelected;
-    }
 
+    //
+    // Summary:
+    //     Event handler for when a branch is selected.
+    //     Navigates to the «ProductsPage» with the selected branch ID.
+    //     Clears the selection.
     private async void OnBranchSelected(object sender, SelectionChangedEventArgs e)
     {
-        var selectedBranch = e.CurrentSelection[0] as ShopBranch;
-        if (selectedBranch != null)
-            await Navigation.PushAsync(new ProductsPage(selectedBranch.ID));
-
-        //if (e.CurrentSelection.FirstOrDefault() is ShopBranch selectedBranch)
-        //    await Navigation.PushAsync(new ProductsPage(selectedBranch.ID));
-
-        ((CollectionView)sender).SelectedItem = null;
+        if (e.CurrentSelection.FirstOrDefault() is ShopBranch selectedBranch)
+        {
+            await Shell.Current.GoToAsync($"//ProductsPage?branchId={selectedBranch.ID}");
+            ((CollectionView)sender).SelectedItem = null;
+        }
     }
 }

@@ -2,10 +2,16 @@
 
 namespace TapeHubDemo.Database;
 
+//
+// Summary:
+//     Provides basic CRUD operations (create, red, update, delete) for the «ShopBranch» model.
 public static class ShopBranchService
 {
+    private const string OpeningHoursPattern = "Opening Hours: {0}";
+    private const string ClosingHoursPattern = "Closing Hours: {0}";
+
     public static async Task<int> AddShopBranchAsync(ShopBranch shopBranch) =>
-    await DatabaseService.GetDatabase().InsertAsync(shopBranch);
+        await DatabaseService.GetDatabase().InsertAsync(shopBranch);
 
     public static async Task<ShopBranch> GetShopBranchByIdAsync(int id) =>
         await DatabaseService.GetDatabase().Table<ShopBranch>().FirstOrDefaultAsync(sb => sb.ID == id);
@@ -31,11 +37,11 @@ public static class ShopBranchService
 
         var initialShopBranches = new List<ShopBranch>
         {
-            new() { Name = "Pardubice Branch", OpeningHours = "08:00", ClosingHours = "20:00", StockQuantity = 1, ContactInfoID = contactInfos[0].ID, ImagePath = "shopbranch_1.png" },
-            new() { Name = "Praha Branch", OpeningHours = "08:00", ClosingHours = "20:00", StockQuantity = 1, ContactInfoID = contactInfos[1].ID, ImagePath = "shopbranch_2.png" },
-            new() { Name = "Liberec Branch", OpeningHours = "08:00", ClosingHours = "20:00", StockQuantity = 1, ContactInfoID = contactInfos[2].ID, ImagePath = "shopbranch_3.png" },
-            new() { Name = "České Budějovice Branch", OpeningHours = "08:00", ClosingHours = "20:00", StockQuantity = 1, ContactInfoID = contactInfos[3].ID, ImagePath = "shopbranch_4.png" },
-            new() { Name = "Ostrava Branch", OpeningHours = "08:00", ClosingHours = "20:00", StockQuantity = 1, ContactInfoID = contactInfos[4].ID, ImagePath = "shopbranch_5.png" }
+            new() { Name = "Pardubice Branch", OpeningHours = string.Format(OpeningHoursPattern, "08:00"), ClosingHours = string.Format(ClosingHoursPattern, "20:00"), StockQuantity = 1, ContactInfoID = contactInfos[0].ID, ImagePath = "shopbranch_1.png" },
+            new() { Name = "Praha Branch", OpeningHours = string.Format(OpeningHoursPattern, "08:00"), ClosingHours = string.Format(ClosingHoursPattern, "20:00"), StockQuantity = 1, ContactInfoID = contactInfos[1].ID, ImagePath = "shopbranch_2.png" },
+            new() { Name = "Liberec Branch", OpeningHours = string.Format(OpeningHoursPattern, "08:00"), ClosingHours = string.Format(ClosingHoursPattern, "20:00"), StockQuantity = 1, ContactInfoID = contactInfos[2].ID, ImagePath = "shopbranch_3.png" },
+            new() { Name = "České Budějovice Branch", OpeningHours = string.Format(OpeningHoursPattern, "08:00"), ClosingHours = string.Format(ClosingHoursPattern, "20:00"), StockQuantity = 1, ContactInfoID = contactInfos[3].ID, ImagePath = "shopbranch_4.png" },
+            new() { Name = "Ostrava Branch", OpeningHours = string.Format(OpeningHoursPattern, "08:00"), ClosingHours = string.Format(ClosingHoursPattern, "20:00"), StockQuantity = 1, ContactInfoID = contactInfos[4].ID, ImagePath = "shopbranch_5.png" }
         };
 
         foreach (var shopBranch in initialShopBranches)

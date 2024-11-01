@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Shell
-    x:Class="TapeHubDemo.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:TapeHubDemo.View"
-    Shell.FlyoutBehavior="Disabled"
-    Title="TapeHubDemo">
+    x:Class="TapeHubDemo.AppShell"
+    xmlns:main="clr-namespace:TapeHubDemo"
+    xmlns:view="clr-namespace:TapeHubDemo.View"
+    Shell.BackgroundColor="#8B5E3C"
+    Shell.TitleColor="#F5F5DC">
 
-    <ShellContent Title="Register" ContentTemplate="{DataTemplate local:RegisterPage}" />
-    <ShellContent Title="Users List" ContentTemplate="{DataTemplate local:UsersListPage}" />
-
+    <ShellContent Route="MainPage" ContentTemplate="{DataTemplate main:MainPage}" />
+    <ShellContent Route="ShopBranchesPage" ContentTemplate="{DataTemplate view:ShopBranchesPage}" />
+    <ShellContent Route="ProductsPage" ContentTemplate="{DataTemplate view:ProductsPage}" />
 </Shell>

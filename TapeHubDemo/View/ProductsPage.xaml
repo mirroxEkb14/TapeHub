@@ -3,25 +3,43 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TapeHubDemo.View.ProductsPage"
              xmlns:vm="clr-namespace:TapeHubDemo.ViewModel"
-             xmlns:model="clr-namespace:TapeHubDemo.Model"
-             x:DataType="vm:ProductsPageViewModel"
+             Shell.FlyoutBehavior="Disabled"
+             BackgroundColor="#F5F5DC"
              Title="Products">
-    <StackLayout Padding="10">
-        <ListView ItemsSource="{Binding Products}">
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="model:Product">
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal" Padding="10">
-                            <Image Source="{Binding ImagePath}" HeightRequest="80" WidthRequest="80" />
-                            <StackLayout>
-                                <Label Text="{Binding Title}" FontSize="Medium" />
-                                <Label Text="{Binding Description}" FontSize="Small" />
-                                <Label Text="{Binding Price, StringFormat='Price: {0:C}'}" FontSize="Small" TextColor="Green" />
-                            </StackLayout>
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackLayout>
+
+    <CollectionView ItemsSource="{Binding Products}" SelectionMode="None">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Frame Padding="10" BorderColor="#D2B48C" CornerRadius="15" Margin="10" BackgroundColor="#FAF3E0">
+                    <StackLayout Orientation="Vertical" Spacing="10">
+                        <!-- Product Image -->
+                        <Image Source="{Binding ImagePath}" HeightRequest="300" Aspect="Fill" />
+
+                        <!-- Product Title -->
+                        <Label Text="{Binding Title}" 
+                               FontAttributes="Bold" 
+                               FontFamily="CinzelBold"
+                               FontSize="18" 
+                               HorizontalOptions="Center" 
+                               TextColor="#5D4037" />
+
+                        <!-- Product Type -->
+                        <Label Text="{Binding Type}"
+                               FontFamily="MerriweatherRegular"
+                               FontSize="16" 
+                               HorizontalOptions="Center" 
+                               TextColor="#5D4037" />
+
+                        <!-- Product Price -->
+                        <Label Text="{Binding Price, StringFormat='{0}€'}"
+                               FontFamily="MerriweatherRegular"
+                               FontSize="16" 
+                               FontAttributes="Bold" 
+                               HorizontalOptions="Center" 
+                               TextColor="#8B4513" />
+                    </StackLayout>
+                </Frame>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>
