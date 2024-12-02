@@ -5,6 +5,7 @@
              xmlns:vm="clr-namespace:TapeHubDemo.ViewModel"
              xmlns:controls="clr-namespace:TapeHubDemo.Control"
              Shell.FlyoutBehavior="Disabled"
+             BackgroundColor="#FAF3E0"
              Title="Shop Branches">
 
     <!-- Setting the data (binding) context of this page to an instance of «ShopBranchesViewModel» -->
@@ -12,25 +13,47 @@
         <vm:ShopBranchesViewModel />
     </ContentPage.BindingContext>
 
-    <!-- Displaying a collection of shop branches in a card-like style using a Frame for each item -->
-    <CollectionView ItemsSource="{Binding Branches}" SelectionMode="None">
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <controls:ShopBranchFrame Padding="10" BorderColor="LightGray" CornerRadius="10" Margin="10">
-                    <!-- Adding a «TapGestureRecognizer» to the entire Frame to allow user redirecting logic
-                    after clicking on the «Image» inside «CollectionView» (to trigger item selection) -->
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ShopBranchesViewModel}}, Path=BranchSelectedCommand}" CommandParameter="{Binding .}" />
-                    </Frame.GestureRecognizers>
+    <!-- Using a Grid layout for better arrangement of shop branches -->
+    <ScrollView>
+        <Grid Padding="10" ColumnSpacing="10" RowSpacing="10">
+            <CollectionView ItemsSource="{Binding Branches}" SelectionMode="None">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2" />
+                </CollectionView.ItemsLayout>
+                
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <controls:ShopBranchFrame Padding="10" BorderColor="LightGray" CornerRadius="15" Margin="5" BackgroundColor="White" HasShadow="True">
+                            <!-- Adding a «TapGestureRecognizer» to navigate to ProductsPage -->
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ShopBranchesViewModel}}, Path=BranchSelectedCommand}" CommandParameter="{Binding .}" />
+                            </Frame.GestureRecognizers>
 
-                    <StackLayout Orientation="Vertical" Spacing="10">
-                        <Image Source="{Binding ImagePath}" HeightRequest="300" Aspect="Fill" />
-                        <Label Text="{Binding Name}" FontAttributes="Bold" FontFamily="CinzelRegular" FontSize="18" />
-                        <Label Text="{Binding OpeningHours}" FontFamily="CinzelBold" FontSize="14" />
-                        <Label Text="{Binding ClosingHours}" FontFamily="CinzelBold" FontSize="14" />
-                    </StackLayout>
-                </controls:ShopBranchFrame>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+                            <VerticalStackLayout Spacing="5">
+                                <Image Source="{Binding ImagePath}"
+                                       HeightRequest="150"
+                                       Aspect="AspectFill"
+                                       Margin="0,0,0,5"
+                                       BackgroundColor="#F5F5DC" />
+                                <Label Text="{Binding Name}"
+                                       FontAttributes="Bold"
+                                       FontFamily="CinzelRegular"
+                                       FontSize="16"
+                                       TextColor="#8B4513"
+                                       HorizontalOptions="Center" />
+                                <Label Text="{Binding OpeningHours}"
+                                       FontFamily="MerriweatherRegular"
+                                       FontSize="14"
+                                       HorizontalOptions="Center" />
+                                <Label Text="{Binding ClosingHours}"
+                                       FontFamily="MerriweatherRegular"
+                                       FontSize="14"
+                                       HorizontalOptions="Center" />
+                            </VerticalStackLayout>
+                        </controls:ShopBranchFrame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ScrollView>
 </ContentPage>

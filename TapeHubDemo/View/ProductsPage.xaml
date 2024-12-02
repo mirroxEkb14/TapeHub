@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TapeHubDemo.View.ProductsPage"
              xmlns:vm="clr-namespace:TapeHubDemo.ViewModel"
+             xmlns:controls="clr-namespace:TapeHubDemo.Control"
              Shell.FlyoutBehavior="Disabled"
-             BackgroundColor="#F5F5DC"
+             BackgroundColor="#FAF3E0"
              Title="Products">
 
     <!--
@@ -13,39 +14,49 @@
     The «No DataContext found for Binding 'Products'» warning is ignored here, as it is resolved at runtime.
     -->
 
-    <CollectionView ItemsSource="{Binding Products}" SelectionMode="None">
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <Frame Padding="10" BorderColor="#D2B48C" CornerRadius="15" Margin="10" BackgroundColor="#FAF3E0">
-                    <StackLayout Orientation="Vertical" Spacing="10">
-                        <!-- Product Image -->
-                        <Image Source="{Binding ImagePath}" HeightRequest="300" Aspect="Fill" />
+    <Grid Padding="10">
+        <CollectionView ItemsSource="{Binding Products}" SelectionMode="None">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="2" HorizontalItemSpacing="10" VerticalItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+            
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <controls:ProductsFrame Padding="10" BorderColor="#D2B48C" CornerRadius="15" HasShadow="True" BackgroundColor="White" Margin="10">
+                        <VerticalStackLayout Spacing="10">
+                            <!-- Product Image -->
+                            <Image Source="{Binding ImagePath}"
+                                   HeightRequest="150"
+                                   Aspect="AspectFill"
+                                   Margin="0,0,0,10"
+                                   BackgroundColor="#F5F5DC" />
 
-                        <!-- Product Title -->
-                        <Label Text="{Binding Title}" 
-                               FontAttributes="Bold" 
-                               FontFamily="CinzelBold"
-                               FontSize="18" 
-                               HorizontalOptions="Center" 
-                               TextColor="#5D4037" />
+                            <!-- Product Title -->
+                            <Label Text="{Binding Title}"
+                                   FontAttributes="Bold"
+                                   FontFamily="CinzelBold"
+                                   FontSize="16"
+                                   HorizontalTextAlignment="Center"
+                                   TextColor="#5D4037" />
 
-                        <!-- Product Type -->
-                        <Label Text="{Binding Type}"
-                               FontFamily="MerriweatherRegular"
-                               FontSize="16" 
-                               HorizontalOptions="Center" 
-                               TextColor="#5D4037" />
+                            <!-- Product Type -->
+                            <Label Text="{Binding Type}"
+                                   FontFamily="MerriweatherRegular"
+                                   FontSize="14"
+                                   HorizontalTextAlignment="Center"
+                                   TextColor="#8B4513" />
 
-                        <!-- Product Price -->
-                        <Label Text="{Binding Price, StringFormat='{0}€'}"
-                               FontFamily="MerriweatherRegular"
-                               FontSize="16" 
-                               FontAttributes="Bold" 
-                               HorizontalOptions="Center" 
-                               TextColor="#8B4513" />
-                    </StackLayout>
-                </Frame>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+                            <!-- Product Price -->
+                            <Label Text="{Binding Price, StringFormat='{0}€'}"
+                                   FontFamily="MerriweatherRegular"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Center"
+                                   TextColor="#5D4037" />
+                        </VerticalStackLayout>
+                    </controls:ProductsFrame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
 </ContentPage>
