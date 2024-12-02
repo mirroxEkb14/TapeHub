@@ -1,13 +1,18 @@
+using TapeHubDemo.ViewModel;
+
 namespace TapeHubDemo.View;
 
 public partial class LoginPage : ContentPage
 {
-	public LoginPage() =>
-		InitializeComponent();
-
     //
     // Summary:
-    //     Represents a tap handler in case of "Forgot your password?".
-    private async void OnForgotPasswordTapped(object sender, EventArgs e) =>
-        await DisplayAlert("Forgotten Password", "Please, contact the Administrator", "OK");
+    //     Passes the «LoginPage» instance to the «LoginViewModel» for implementing an animation and alert displaying.
+    public LoginPage()
+    {
+        InitializeComponent();
+        
+        var viewModel = BindingContext as LoginViewModel;
+        if (viewModel != null)
+            viewModel.Page = this;
+    }
 }

@@ -65,24 +65,26 @@
                 Command="{Binding LoginCommand}" />
 
         <!-- Forgot Password Link -->
-        <Label Text="Forgot your password?"
+        <Label x:Name="ForgotPasswordLabel"
+               Text="Forgot your password?"
                TextColor="#8B4513"
                FontSize="14"
                HorizontalOptions="Center"
                Margin="0,10,0,0">
             <Label.GestureRecognizers>
-                <TapGestureRecognizer Tapped="OnForgotPasswordTapped" />
+                <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" CommandParameter="{x:Reference ForgotPasswordLabel}" />
             </Label.GestureRecognizers>
         </Label>
 
         <!-- Sign Up Link -->
-        <Label Text="Don't have an account? Sign up here!"
+        <Label x:Name="DontHaveAccountLabel"
+               Text="Don't have an account? Sign up here!"
                TextColor="#8B4513"
                FontSize="14"
                HorizontalOptions="Center"
                Margin="0,10,0,0">
             <Label.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding NavigateToRegisterCommand}" />
+                <TapGestureRecognizer Command="{Binding NavigateToRegisterCommand}" CommandParameter="{x:Reference DontHaveAccountLabel}" />
             </Label.GestureRecognizers>
         </Label>
     </StackLayout>

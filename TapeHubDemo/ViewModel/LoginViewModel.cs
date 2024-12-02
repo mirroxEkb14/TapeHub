@@ -19,6 +19,11 @@ public partial class LoginViewModel : ObservableObject
     [ObservableProperty]
     private string _errorMessage;
 
+    //
+    // Summary:
+    //     Represents a reference to the page for animations and displaying alerts.
+    public Page? Page { get; set; }
+
     public LoginViewModel()
     {
         _errorMessage = string.Empty;
@@ -69,8 +74,42 @@ public partial class LoginViewModel : ObservableObject
 
     //
     // Summary:
+    //     Highlights the tapped label.
+    //     Displays an alert with the contact information for password recovery.
+    [RelayCommand]
+    public async Task ForgotPasswordAsync(Label label)
+    {
+        if (label != null)
+            await HighlightLabel(label);
+
+        if (Page != null)
+            await Page.DisplayAlert("Forgotten Password", "Please, contact the Administrator: support@tapehub.com", "OK");
+    }
+
+    //
+    // Summary:
+    //     Highlights the tapped label.
     //     Navigates from «LoginPage» to «RegisterPage».
     [RelayCommand]
-    public async Task NavigateToRegisterAsync() =>
+    public static async Task NavigateToRegisterAsync(Label label)
+    {
+        if (label != null)
+            await HighlightLabel(label);
+
         await Shell.Current.GoToAsync($"RegisterPage");
+    }
+
+    #region Animation Methods
+    //
+    // Summary:
+    //     Adds a highlight effect to a tapped label by changing its opacity.
+    private static async Task HighlightLabel(Label label)
+    {
+        if (label == null)
+            return;
+
+        await label.FadeTo(0.5, 100, Easing.CubicOut);
+        await label.FadeTo(1.0, 100, Easing.CubicIn);
+    }
+    #endregion
 }
