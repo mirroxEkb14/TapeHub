@@ -10,6 +10,7 @@
 
     <ShellContent Route="MainPage" ContentTemplate="{DataTemplate main:MainPage}" />
     <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate view:LoginPage}" />
+    <ShellContent Route="RegisterPage" ContentTemplate="{DataTemplate view:RegisterPage}" />
     <ShellContent Route="ShopBranchesPage" ContentTemplate="{DataTemplate view:ShopBranchesPage}" />
     <ShellContent Route="ProductsPage" ContentTemplate="{DataTemplate view:ProductsPage}" />
 </Shell>

@@ -66,4 +66,11 @@ public partial class LoginViewModel : ObservableObject
             ErrorMessage = "Invalid username or password.";
         }
     }
+
+    //
+    // Summary:
+    //     Navigates from «LoginPage» to «RegisterPage».
+    [RelayCommand]
+    public async Task NavigateToRegisterAsync() =>
+        await Shell.Current.GoToAsync($"RegisterPage");
 }

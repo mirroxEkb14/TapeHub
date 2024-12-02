@@ -23,6 +23,11 @@ public static class UserService
     public static async Task<User> GetUserByIdAsync(int id) =>
         await DatabaseService.GetDatabase().Table<User>().FirstOrDefaultAsync(u => u.ID == id);
 
+    public static async Task<User?> GetUserByUsernameAsync(string username) =>
+        await DatabaseService.GetDatabase()
+            .Table<User>()
+            .FirstOrDefaultAsync(u => u.Username == username);
+
     public static async Task<List<User>> GetAllUsersAsync() =>
         await DatabaseService.GetDatabase().Table<User>().ToListAsync();
 

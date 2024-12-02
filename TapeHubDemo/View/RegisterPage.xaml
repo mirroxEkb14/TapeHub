@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TapeHubDemo.View.RegisterPage"
+             xmlns:vm="clr-namespace:TapeHubDemo.ViewModel"
+             Shell.FlyoutBehavior="Disabled"
+             BackgroundColor="#F5F5DC">
+
+    <!-- Setting Binding Context -->
+    <ContentPage.BindingContext>
+        <vm:RegisterViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout Padding="30" Spacing="20" VerticalOptions="Start">
+        <Label Text="Create Your Account"
+               FontSize="20"
+               FontAttributes="Bold"
+               TextColor="#8B4513"
+               HorizontalTextAlignment="Center" />
+
+        <!-- Username Entry -->
+        <Entry Placeholder="Username"
+               Text="{Binding Username, Mode=TwoWay}"
+               BackgroundColor="White"
+               PlaceholderColor="#8B4513"
+               TextColor="#4A4A4A" />
+
+        <!-- Password Entry -->
+        <Entry Placeholder="Password"
+               Text="{Binding Password, Mode=TwoWay}"
+               BackgroundColor="White"
+               IsPassword="True"
+               PlaceholderColor="#8B4513"
+               TextColor="#4A4A4A" />
+
+        <!-- Confirm Password Entry -->
+        <Entry Placeholder="Confirm Password"
+               Text="{Binding ConfirmPassword, Mode=TwoWay}"
+               BackgroundColor="White"
+               IsPassword="True"
+               PlaceholderColor="#8B4513"
+               TextColor="#4A4A4A" />
+
+        <!-- Error Message -->
+        <Label Text="{Binding ErrorMessage}"
+               TextColor="Red"
+               IsVisible="{Binding ErrorMessage, Converter={StaticResource NullToVisibilityConverter}}" />
+
+        <!-- Register Button -->
+        <Button Text="Sign Up"
+                Command="{Binding RegisterCommand}"
+                BackgroundColor="#8B4513"
+                TextColor="White"
+                CornerRadius="25" />
+    </StackLayout>
+</ContentPage>
