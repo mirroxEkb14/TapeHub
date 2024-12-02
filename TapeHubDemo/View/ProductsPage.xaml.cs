@@ -5,6 +5,9 @@ namespace TapeHubDemo.View;
 //
 // Summary:
 //     «IQueryAttributable» allows to receive and handle a «branchId» parameter passed during navigation.
+//     It also allows to avoid settring the «ContentPage.BindingContext» in the XAML file.
+//     Alternatively, an empty «ProductsViewModel» constructor could be created along with the
+//         «ContentPage.BindingContext» definition in the XAML file.
 public partial class ProductsPage : ContentPage, IQueryAttributable
 {
 	public ProductsPage() =>

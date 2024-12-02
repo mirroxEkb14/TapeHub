@@ -14,10 +14,10 @@ public partial class AppShell : Shell
     {
         InitializeComponent();
 
+        Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
         Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
         Routing.RegisterRoute(nameof(ShopBranchesPage), typeof(ShopBranchesPage));
         Routing.RegisterRoute(nameof(ProductsPage), typeof(ProductsPage));
-        Routing.RegisterRoute(nameof(TabBarTestPage), typeof(TabBarTestPage));
 
         SetTitleView();
     }

@@ -39,7 +39,7 @@ public partial class MainPage : ContentPage
         await typewriterTask;
 
         await Task.Delay(500);
-        await Navigation.PushAsync(new LoginPage());
+        await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
     }
 
     #region Logo Animations

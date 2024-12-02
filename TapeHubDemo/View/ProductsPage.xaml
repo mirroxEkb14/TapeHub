@@ -7,6 +7,12 @@
              BackgroundColor="#F5F5DC"
              Title="Products">
 
+    <!--
+    The «ContentPage.BindingContext» (data binding context) of this page is set to an instance of «ShopBranchesViewModel»
+    dynamically in the code-behind file using the «IQueryAttributable» interface.
+    The «No DataContext found for Binding 'Products'» warning is ignored here, as it is resolved at runtime.
+    -->
+
     <CollectionView ItemsSource="{Binding Products}" SelectionMode="None">
         <CollectionView.ItemTemplate>
             <DataTemplate>

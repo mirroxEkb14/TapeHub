@@ -3,14 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TapeHubDemo.View.LoginPage"
              xmlns:vm="clr-namespace:TapeHubDemo.ViewModel"
+             Shell.FlyoutBehavior="Disabled"
              BackgroundColor="#F5F5DC">
 
-    <!-- Setting the data context (binding context) of this page to an instance of LoginViewModel -->
+    <!-- Setting the data (binding) context of this page to an instance of «LoginViewModel» -->
     <ContentPage.BindingContext>
         <vm:LoginViewModel />
     </ContentPage.BindingContext>
 
-    <!-- Disabling the back button in the navigation bar when navigating from the MainPage to the LoginPage -->
+    <!-- Disabling the back button in the navigation bar when navigating from the LoginPage to the «ShopBranchesPage» -->
     <Shell.BackButtonBehavior>
         <BackButtonBehavior IsVisible="False" />
     </Shell.BackButtonBehavior>

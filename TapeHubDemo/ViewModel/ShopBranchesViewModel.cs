@@ -2,6 +2,7 @@
 using TapeHubDemo.Database;
 using TapeHubDemo.Model;
 using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace TapeHubDemo.ViewModel;
 
@@ -13,10 +14,6 @@ public partial class ShopBranchesViewModel : ObservableObject
     public ShopBranchesViewModel() =>
         LoadShopBranches();
 
-    //
-    // Summary:
-    //     Asynchronously loads shop branches from the DB class «ShopBranchService».
-    //     Clears any existing branches in the collection and populates it with data from the DB.
     private async Task LoadShopBranches()
     {
         var shopBranches = await ShopBranchService.GetAllShopBranchesAsync();
@@ -24,5 +21,15 @@ public partial class ShopBranchesViewModel : ObservableObject
 
         foreach (var branch in shopBranches)
             Branches.Add(branch);
+    }
+
+    //
+    // Summary:
+    //     Is used in the «Frame.GestureRecognizers» logic to navigate to the «ProductsPage».
+    [RelayCommand]
+    public static async Task BranchSelected(ShopBranch selectedBranch)
+    {
+        if (selectedBranch != null)
+            await Shell.Current.GoToAsync($"ProductsPage?branchId={selectedBranch.ID}");
     }
 }

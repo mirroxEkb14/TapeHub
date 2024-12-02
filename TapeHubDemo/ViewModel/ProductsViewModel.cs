@@ -15,7 +15,7 @@ public partial class ProductsViewModel : ObservableObject
 
     //
     // Summary:
-    //     Asynchronously loads products associated with the specified shop branch ID.
+    //     Loads products associated with the specified shop branch ID.
     //     Retrieves the product list from the «ProductService» and populates the «Products»
     //         collection, which is bound to the UI.
     private async Task LoadProducts(int shopBranchId)
