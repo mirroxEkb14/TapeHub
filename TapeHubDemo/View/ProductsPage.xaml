@@ -14,49 +14,54 @@
     The «No DataContext found for Binding 'Products'» warning is ignored here, as it is resolved at runtime.
     -->
 
-    <Grid Padding="10">
-        <CollectionView ItemsSource="{Binding Products}" SelectionMode="None">
-            <CollectionView.ItemsLayout>
-                <GridItemsLayout Orientation="Vertical" Span="2" HorizontalItemSpacing="10" VerticalItemSpacing="10" />
-            </CollectionView.ItemsLayout>
-            
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <controls:ProductsFrame Padding="10" BorderColor="#D2B48C" CornerRadius="15" HasShadow="True" BackgroundColor="White" Margin="10">
-                        <VerticalStackLayout Spacing="10">
-                            <!-- Product Image -->
-                            <Image Source="{Binding ImagePath}"
-                                   HeightRequest="150"
-                                   Aspect="AspectFill"
-                                   Margin="0,0,0,10"
-                                   BackgroundColor="#F5F5DC" />
+    <AbsoluteLayout>
+        <Grid AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" Padding="10">
+            <CollectionView ItemsSource="{Binding Products}" SelectionMode="None">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2" HorizontalItemSpacing="10" VerticalItemSpacing="10" />
+                </CollectionView.ItemsLayout>
 
-                            <!-- Product Title -->
-                            <Label Text="{Binding Title}"
-                                   FontAttributes="Bold"
-                                   FontFamily="CinzelBold"
-                                   FontSize="16"
-                                   HorizontalTextAlignment="Center"
-                                   TextColor="#5D4037" />
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <controls:ProductsFrame Padding="10" BorderColor="#D2B48C" CornerRadius="15" HasShadow="True" BackgroundColor="White" Margin="10">
+                            <Frame.GestureRecognizers>
+                                <!-- Adding a «TapGestureRecognizer» to show an alert -->
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ProductsViewModel}}, Path=ProductSelectedCommand}" CommandParameter="{Binding .}" />
+                                <!-- Adding a «TapGestureRecognizer» to select a product -->
+                                <TapGestureRecognizer NumberOfTapsRequired="2" Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ProductsViewModel}}, Path=ProductDoublePressedCommand}" CommandParameter="{Binding .}" />
+                            </Frame.GestureRecognizers>
 
-                            <!-- Product Type -->
-                            <Label Text="{Binding Type}"
-                                   FontFamily="MerriweatherRegular"
-                                   FontSize="14"
-                                   HorizontalTextAlignment="Center"
-                                   TextColor="#8B4513" />
+                            <controls:ProductsFrame.Triggers>
+                                <!-- Changing background color for the item when is selected (double clicked) -->
+                                <DataTrigger TargetType="controls:ProductsFrame" Binding="{Binding IsSelected}" Value="True">
+                                    <Setter Property="BackgroundColor" Value="#FFD700" />
+                                    <Setter Property="BorderColor" Value="#FF7700" />
+                                </DataTrigger>
+                            </controls:ProductsFrame.Triggers>
 
-                            <!-- Product Price -->
-                            <Label Text="{Binding Price, StringFormat='{0}€'}"
-                                   FontFamily="MerriweatherRegular"
-                                   FontSize="16"
-                                   FontAttributes="Bold"
-                                   HorizontalTextAlignment="Center"
-                                   TextColor="#5D4037" />
-                        </VerticalStackLayout>
-                    </controls:ProductsFrame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </Grid>
+                            <VerticalStackLayout Spacing="10">
+                                <Image Source="{Binding ImagePath}" HeightRequest="150" Aspect="AspectFill" Margin="0,0,0,10" BackgroundColor="#F5F5DC" />
+                                <Label Text="{Binding Title}" FontAttributes="Bold" FontFamily="CinzelBold" FontSize="16" HorizontalTextAlignment="Center" TextColor="#5D4037" />
+                                <Label Text="{Binding Type}" FontFamily="MerriweatherRegular" FontSize="14" HorizontalTextAlignment="Center" TextColor="#8B4513" />
+                                <Label Text="{Binding Price, StringFormat='{0}€'}" FontFamily="MerriweatherRegular" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Center" TextColor="#5D4037" />
+                            </VerticalStackLayout>
+                        </controls:ProductsFrame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+
+        <!-- Fixed Admin controls: Add/Edit/Delete Buttons -->
+        <Grid AbsoluteLayout.LayoutBounds="1, 0, AutoSize, AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional" Padding="10" RowSpacing="5" IsVisible="{Binding IsAdmin}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Button Grid.Row="0" Text="Add" BackgroundColor="#4CAF50" TextColor="White" FontAttributes="Bold" Command="{Binding AddProductCommand}" />
+            <Button Grid.Row="1" Text="Edit" BackgroundColor="#2196F3" TextColor="White" FontAttributes="Bold" Command="{Binding EditProductCommand}" />
+            <Button Grid.Row="2" Text="Delete" BackgroundColor="#F44336" TextColor="White" FontAttributes="Bold" Command="{Binding DeleteProductCommand}" />
+        </Grid>
+    </AbsoluteLayout>
 </ContentPage>

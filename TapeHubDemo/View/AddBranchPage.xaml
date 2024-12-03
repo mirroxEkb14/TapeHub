@@ -37,9 +37,7 @@
             <Entry Placeholder="e.g., shopbranch_6.png" Text="{Binding ShopBranch.ImagePath}" />
 
             <!-- Error Message -->
-            <Label Text="{Binding ErrorMessage}"
-               TextColor="Red"
-               IsVisible="{Binding ErrorMessage, Converter={StaticResource NullToVisibilityConverter}}" />
+            <Label Text="{Binding ErrorMessage}" TextColor="Red" IsVisible="{Binding ErrorMessage, Converter={StaticResource NullToVisibilityConverter}}" />
 
             <!-- Save Button -->
             <Button Text="Add Branch" BackgroundColor="#4CAF50" TextColor="White" FontAttributes="Bold" Command="{Binding AddBranchCommand}" />

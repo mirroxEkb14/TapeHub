@@ -10,17 +10,30 @@ public partial class AppShell : Shell
 {
     private Label? _titleLabel;
 
+    //
+    // Summary:
+    //     For dynamic pages that require parameters, the routes are registered here in the code-behind.
     public AppShell()
     {
         InitializeComponent();
 
-        Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
+        Routing.RegisterRoute(nameof(RegisterPage), typeof(RegisterPage));
+        Routing.RegisterRoute(nameof(ShopBranchesPage), typeof(ShopBranchesPage));
+        Routing.RegisterRoute(nameof(ProductsPage), typeof(ProductsPage));
+        Routing.RegisterRoute(nameof(AddBranchPage), typeof(AddBranchPage));
+        Routing.RegisterRoute(nameof(EditBranchPage), typeof(EditBranchPage));
+        Routing.RegisterRoute(nameof(AddProductPage), typeof(AddProductPage));
+        Routing.RegisterRoute(nameof(EditProductPage), typeof(EditProductPage));
+
+        /*Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
         Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
         Routing.RegisterRoute(nameof(RegisterPage), typeof(RegisterPage));
         Routing.RegisterRoute(nameof(ShopBranchesPage), typeof(ShopBranchesPage));
         Routing.RegisterRoute(nameof(ProductsPage), typeof(ProductsPage));
         Routing.RegisterRoute(nameof(AddBranchPage), typeof(AddBranchPage));
         Routing.RegisterRoute(nameof(EditBranchPage), typeof(EditBranchPage));
+        Routing.RegisterRoute(nameof(AddProductPage), typeof(AddProductPage));
+        Routing.RegisterRoute(nameof(EditProductPage), typeof(EditProductPage));*/
 
         SetTitleView();
     }

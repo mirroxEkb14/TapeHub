@@ -20,8 +20,8 @@ public partial class ShopBranchesViewModel : ObservableObject
     public ShopBranchesViewModel()
     {
         _branches = [];
-        LoadShopBranches();
         _isAdmin = false;
+        LoadShopBranches();
     }
 
     private async Task LoadShopBranches()
@@ -50,7 +50,7 @@ public partial class ShopBranchesViewModel : ObservableObject
             ClearSelections();
             return;
         }
-        await Shell.Current.GoToAsync($"ProductsPage?branchId={selectedBranch.ID}");
+        await Shell.Current.GoToAsync($"ProductsPage?branchId={selectedBranch.ID}&isAdmin={IsAdmin}");
     }
 
     //

@@ -66,7 +66,7 @@ public partial class LoginViewModel : ObservableObject
         {
             var isAdmin = user.Role == UserRole.Admin;
             ErrorMessage = string.Empty;
-            await Shell.Current.GoToAsync($"//ShopBranchesPage?isAdmin={isAdmin}");
+            await Shell.Current.GoToAsync($"ShopBranchesPage?isAdmin={isAdmin}");
         }
         else
         {

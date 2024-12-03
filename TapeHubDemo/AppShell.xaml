@@ -8,6 +8,10 @@
     Shell.BackgroundColor="#8B5E3C"
     Shell.TitleColor="#F5F5DC">
 
+    <!-- For commonly used routes that don't require parameters, the «ShellContent» definitions
+    are kept here in the XAML. -->
+    
+    <!--
     <ShellContent Route="MainPage" ContentTemplate="{DataTemplate main:MainPage}" />
     <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate view:LoginPage}" />
     <ShellContent Route="RegisterPage" ContentTemplate="{DataTemplate view:RegisterPage}" />
@@ -15,4 +19,10 @@
     <ShellContent Route="ProductsPage" ContentTemplate="{DataTemplate view:ProductsPage}" />
     <ShellContent Route="AddBranchPage" ContentTemplate="{DataTemplate view:AddBranchPage}" />
     <ShellContent Route="EditBranchPage" ContentTemplate="{DataTemplate view:EditBranchPage}" />
+    <ShellContent Route="AddProductPage" ContentTemplate="{DataTemplate view:AddProductPage}" />
+    <ShellContent Route="EditProductPage" ContentTemplate="{DataTemplate view:EditProductPage}" />
+    -->
+
+    <ShellContent Route="MainPage" ContentTemplate="{DataTemplate main:MainPage}" />
+    <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate view:LoginPage}" />
 </Shell>

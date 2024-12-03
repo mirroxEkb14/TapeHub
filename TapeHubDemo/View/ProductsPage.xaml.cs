@@ -10,8 +10,10 @@ namespace TapeHubDemo.View;
 //         «ContentPage.BindingContext» definition in the XAML file.
 public partial class ProductsPage : ContentPage, IQueryAttributable
 {
-	public ProductsPage() =>
-		InitializeComponent();
+    private ProductsViewModel? _viewModel;
+
+    public ProductsPage() =>
+        InitializeComponent();
 
     //
     // Summary:
@@ -23,6 +25,14 @@ public partial class ProductsPage : ContentPage, IQueryAttributable
         {
             int branchId = Convert.ToInt32(query["branchId"]);
             BindingContext = new ProductsViewModel(branchId);
+            _viewModel = BindingContext as ProductsViewModel;
+        }
+
+        if (query.ContainsKey("isAdmin"))
+        {
+            bool isAdmin = Convert.ToBoolean(query["isAdmin"]);
+            if (_viewModel != null)
+                _viewModel.IsAdmin = isAdmin;
         }
     }
 }

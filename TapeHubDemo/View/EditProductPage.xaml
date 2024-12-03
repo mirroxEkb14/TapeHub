@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:TapeHubDemo.ViewModel"
+             x:Class="TapeHubDemo.View.EditProductPage"
+             Title="Edit Product">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Label Text="Title" FontSize="Medium" />
+            <Entry Text="{Binding Title}" Placeholder="Product Title" />
+
+            <Label Text="Description" FontSize="Medium" />
+            <Editor Text="{Binding Description}" Placeholder="Product Description" />
+
+            <Label Text="Price (€)" FontSize="Medium" />
+            <Entry Text="{Binding Price}" Placeholder="Product Price" Keyboard="Numeric" />
+
+            <Label Text="Type" FontSize="Medium" />
+            <Picker ItemsSource="{Binding ProductTypes}" SelectedItem="{Binding SelectedType}" />
+
+            <Label Text="Image Path" FontSize="Medium" />
+            <Entry Text="{Binding ImagePath}" Placeholder="Product Image Path" />
+
+            <Label Text="{Binding ErrorMessage}" TextColor="Red"  IsVisible="{Binding ErrorMessage, Converter={StaticResource NullToVisibilityConverter}}" />
+
+            <Button Text="Save Changes" Command="{Binding SaveProductCommand}" BackgroundColor="#4CAF50" TextColor="White" FontAttributes="Bold" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

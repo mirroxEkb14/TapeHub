@@ -1,10 +1,11 @@
-﻿using SQLite;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using SQLite;
 using TapeHubDemo.Enumeration;
 
 namespace TapeHubDemo.Model;
 
 [Table("Products")]
-public class Product
+public partial class Product : ObservableObject
 {
     [Column("id"), PrimaryKey, AutoIncrement]
     public int ID { get; set; }
@@ -26,4 +27,11 @@ public class Product
 
     [Column("shop_branch_id")]
     public int ShopBranchID { get; set; }
+
+    //
+    // Summary:
+    //     Is used to determine whether the product is selected or not.
+    //     Is needed to manage the selection of the branches for admins in the «ProductsViewModel» class.
+    [ObservableProperty]
+    private bool _isSelected;
 }
