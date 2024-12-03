@@ -1,9 +1,13 @@
-﻿using SQLite;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using SQLite;
 
 namespace TapeHubDemo.Model;
 
+//
+// Summary:
+//     This model class inherits from the «ObservableObject» class for containing the «_isSelected» property.
 [Table("ShopBranch")]
-public class ShopBranch
+public partial class ShopBranch : ObservableObject
 {
     [Column("id"), PrimaryKey, AutoIncrement]
     public int ID { get; set; }
@@ -25,4 +29,11 @@ public class ShopBranch
 
     [Column("contact_info_id")]
     public int ContactInfoID { get; set; }
+
+    //
+    // Summary:
+    //     Is used to determine whether the branch is selected or not.
+    //     Is needed to manage the selection of the branches for admins in the «ShopBranchesViewModel» class.
+    [ObservableProperty]
+    private bool _isSelected;
 }

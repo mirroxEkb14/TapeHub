@@ -2,7 +2,6 @@
 using CommunityToolkit.Mvvm.Input;
 using TapeHubDemo.Database;
 using TapeHubDemo.Enumeration;
-using TapeHubDemo.View;
 
 namespace TapeHubDemo.ViewModel;
 
@@ -63,8 +62,9 @@ public partial class LoginViewModel : ObservableObject
         var user = await UserService.GetUserByUsernameAndPasswordAsync(Username, Password);
         if (user != null)
         {
+            var isAdmin = user.Role == UserRole.Admin;
             ErrorMessage = string.Empty;
-            await Shell.Current.GoToAsync($"//{nameof(ShopBranchesPage)}");
+            await Shell.Current.GoToAsync($"//ShopBranchesPage?isAdmin={isAdmin}");
         }
         else
         {

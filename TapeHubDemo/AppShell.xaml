@@ -13,4 +13,5 @@
     <ShellContent Route="RegisterPage" ContentTemplate="{DataTemplate view:RegisterPage}" />
     <ShellContent Route="ShopBranchesPage" ContentTemplate="{DataTemplate view:ShopBranchesPage}" />
     <ShellContent Route="ProductsPage" ContentTemplate="{DataTemplate view:ProductsPage}" />
+    <ShellContent Route="AddBranchPage" ContentTemplate="{DataTemplate view:AddBranchPage}" />
 </Shell>

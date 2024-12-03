@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:TapeHubDemo.ViewModel"
+             x:Class="TapeHubDemo.View.AddBranchPage"
+             BackgroundColor="#FAF3E0"
+             Title="Add Shop Branch">
+
+    <!-- Setting the binding context to AddBranchViewModel -->
+    <ContentPage.BindingContext>
+        <vm:AddBranchViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Label Text="Add Shop Branch" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
+
+            <!-- Name -->
+            <Label Text="Name:" FontAttributes="Bold" />
+            <Entry Text="{Binding Name}" Placeholder="e.g., Kutná Hora Branch" />
+
+            <!-- Opening Hours -->
+            <Label Text="Opening Hours:" FontAttributes="Bold" />
+            <Entry Text="{Binding OpeningHours}" Placeholder="e.g., Opened From: 08:00" />
+
+            <!-- Closing Hours -->
+            <Label Text="Closing Hours:" FontAttributes="Bold" />
+            <Entry Text="{Binding ClosingHours}" Placeholder="e.g., Closed From: 20:00" />
+
+            <!-- Stock Quantity -->
+            <Label Text="Stock Quantity:" FontAttributes="Bold" />
+            <Entry Text="{Binding StockQuantity}" Placeholder="e.g., 0" />
+
+            <!-- Image Path -->
+            <Label Text="Image Path:" FontAttributes="Bold" />
+            <Entry Text="{Binding ImagePath}" Placeholder="e.g., shopbranch_6.png" />
+
+            <!-- Error Message -->
+            <Label Text="{Binding ErrorMessage}"
+               TextColor="Red"
+               IsVisible="{Binding ErrorMessage, Converter={StaticResource NullToVisibilityConverter}}" />
+
+            <!-- Save Button -->
+            <Button Text="Add Branch" BackgroundColor="#4CAF50" TextColor="White" FontAttributes="Bold" Command="{Binding AddBranchCommand}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

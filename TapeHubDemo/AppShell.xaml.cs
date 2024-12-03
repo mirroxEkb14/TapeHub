@@ -19,6 +19,7 @@ public partial class AppShell : Shell
         Routing.RegisterRoute(nameof(RegisterPage), typeof(RegisterPage));
         Routing.RegisterRoute(nameof(ShopBranchesPage), typeof(ShopBranchesPage));
         Routing.RegisterRoute(nameof(ProductsPage), typeof(ProductsPage));
+        Routing.RegisterRoute(nameof(AddBranchPage), typeof(AddBranchPage));
 
         SetTitleView();
     }

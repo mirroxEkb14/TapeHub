@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using TapeHubDemo.Control;
 using TapeHubDemo.Database;
 using TapeHubDemo.View;
 
@@ -116,7 +117,7 @@ public partial class RegisterViewModel : ObservableObject
             // -Page Animation-
 
         if (App.Current?.MainPage != null)
-            await App.Current.MainPage.DisplayAlert("Success", "Your account has been created!", "OK");
+            await AlertDisplayer.DisplayAlertAsync("Success", "Your account has been created!", "OK");
 
         await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
     }
