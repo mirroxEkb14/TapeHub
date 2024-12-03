@@ -2,11 +2,13 @@
 
 ## Demo
 
-(demo-intro.gif)
+<img src="Resources/tapehub-demo.gif" alt="TapeHub Demo" width="250" />
 
 ## About
 
-**TapeHub** - is a...
+**TapeHub** - is a mobile application designed to bring the nostalgia of retro media to the modern world. It serves as a centralized platform for managing VHS tapes and audiocassette collections, providing customers with an intuitive and user-friendly experience.
+
+**TapeHub** aims to rekindle the charm of retro media while offering shop managers a robust platform to manage their inventory efficiently. Itâ€™s ideal for enthusiasts, collectors, and shop owners who value the timeless appeal of analog formats.
 
 ## Image/Font Disclaimer
 
@@ -44,20 +46,41 @@ All fonts used in this application are open-source and sourced from [Google Font
 
 - **MainPage**
 	- is the welcome screen of the app;
-	- displays the company’s logo (in the form of a puzzle animation effect) and a slogan ("Discover the Classics") that appears with a typewriter effect;
+	- displays the company's logo (in the form of a puzzle animation effect) and a slogan ("Discover the Classics") that appears with a typewriter effect;
 	- after the animation completes, the user is automatically navigated to the **LoginPage** (here without any back-navigation options);
 - **LoginPage**
-	- is a place where users authenticate their accounts to access the app’s features;
+	- is a place where users authenticate their accounts to access the app's features;
 	- users are prompted to enter their credentials (username and password) to access the app;
-	- upon pressing the Log In button, if the login details are correct, the user is directed to the **ShopBranchesPage**;
-	- if the login details are incorrect, an error message (*"Invalid username or password"*) is displayed, informing the user of the unsuccessful login attempt;
-	- the *Forgot Password* link provides a fallback option for users who cannot remember their credentials, displaying a prompt with instructions to contact the administrator;
+	- upon pressing the "*Log In*" button, if the login details are correct, the user is redirected to the **ShopBranchesPage**;
+	- if the login details are incorrect, an error message ("*Invalid username or password*") is displayed, informing the user of the unsuccessful login attempt;
+	- the *Forgot Password* link provides a fallback option for users who cannot remember their credentials, displaying a prompt with instructions to contact the Administrator;
+- **RegisterPage**
+	- is where users can create a new account to access the app;
+	- if registration is successful, a message ("*Your account has been created!*") is displayed, and the user is redirected back to the **LoginPage** with their credentials pre-filled;
+	- input validation ensures all fields are completed, *passwords* match, and *usernames* are unique;
 - **ShopBranchesPage**
 	- is the main page after logging in, where users can view and explore various shop branches available, each displayed as a card;
 	- users can scroll through the list, and they may be able to tap on a branch to see more detailed information (the products available in that location);
+	- admins see additional controls (*Add*, *Edit*, *Delete*) at the top-right corner of the screen for managing shop branches;
+	- **AddBranchPage**
+		- allows admins to add a new shop branch by filling in its location, contact details, and basic branch information;
+		- input validation ensures that all fields are completed and formatted correctly;
+		- upon saving, the new branch is added to the database and displayed in the **ShopBranchesPage**;
+	- **EditBranchPage**
+		- allows admins to update the details of an existing shop branch;
+		- all fields are pre-filled with the current branch data, and admins can modify location, contact, or shop branch information;
+		- validation ensures changes are meaningful, displaying a prompt if no changes were made;
 - **ProductsPage**
-	- ;
-	- ;
+	- displays all products available in the selected shop branch, such as VHS tapes and audiocassettes;
+	- users can browse through the list of products, with each product displayed as a card showing its image, title, type, and price;
+	- admins see additional controls (*Add*, *Edit*, *Delete*) at the top-right corner of the screen for managing products;
+	- **AddProductPage**
+		- enables admins to add a new product to the selected shop branch by entering its properties;
+		- validation ensures all fields are completed, and the product is saved to the database and displayed in the **ProductsPage** upon successful addition;
+	- **EditProductPage**
+		- allows admins to edit an existing product by modifying its properties;
+		- all fields are pre-filled with the current product data, and validation ensures meaningful changes before saving;
+		- prompts the admin if no changes were made during editing;
 
 ## Contacts
 [![LinkedIn Badge](https://img.shields.io/badge/-LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/daniyar-amirov-103467227)
