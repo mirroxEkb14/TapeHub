@@ -74,7 +74,10 @@ public partial class ShopBranchesViewModel : ObservableObject
     public async Task EditBranchAsync()
     {
         if (SelectedBranch == null)
+        {
+            await AlertDisplayer.DisplayAlertAsync("Edit Branch", "Please select a branch to edit.", "OK");
             return;
+        }
 
         SelectedBranch.Name = "Edited Kutná Hora Branch";
         SelectedBranch.OpeningHours = "Opened From: 05:00";
@@ -95,13 +98,17 @@ public partial class ShopBranchesViewModel : ObservableObject
     public async Task DeleteBranchAsync()
     {
         if (SelectedBranch == null)
+        {
+            await AlertDisplayer.DisplayAlertAsync("Delete Branch", "Please select a branch to delete.", "OK");
             return;
+        }
 
         var result = await ShopBranchService.DeleteShopBranchAsync(SelectedBranch.ID);
         if (result > 0)
         {
             Branches.Remove(SelectedBranch);
-            await AlertDisplayer.DisplayAlertAsync("Delete Branch", "Logic for deleting a branch goes here.", "OK");
+            ClearSelections();
+            await AlertDisplayer.DisplayAlertAsync("Delete Branch", "Selected branch was successfully removed.", "OK");
         }
     }
 

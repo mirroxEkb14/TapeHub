@@ -1,4 +1,5 @@
 ﻿using TapeHubDemo.Model;
+using Location = TapeHubDemo.Model.Location;
 
 namespace TapeHubDemo.Database;
 
@@ -22,10 +23,30 @@ public static class ShopBranchService
     public static async Task<int> UpdateShopBranchAsync(ShopBranch shopBranch) =>
         await DatabaseService.GetDatabase().UpdateAsync(shopBranch);
 
-    public static async Task<int> DeleteShopBranchAsync(int id) =>
-        await GetShopBranchByIdAsync(id) != null
-            ? await DatabaseService.GetDatabase().DeleteAsync<ShopBranch>(id)
-            : 0;
+    //
+    // Summary:
+    //     Deletes «ShopBranch», also related «Location» and «ContactInfo» objects.
+    public static async Task<int> DeleteShopBranchAsync(int id)
+    {
+        var database = DatabaseService.GetDatabase();
+
+        var shopBranch = await GetShopBranchByIdAsync(id);
+        if (shopBranch == null)
+            return 0;
+
+        var contactInfo = await ContactInfoService.GetContactInfoByIdAsync(shopBranch.ContactInfoID);
+        if (contactInfo != null)
+        {
+            if (contactInfo.LocationID != null)
+            {
+                var location = await LocationService.GetLocationByIdAsync((int)contactInfo.LocationID);
+                if (location != null)
+                    await database.DeleteAsync<Location>(location.ID);
+            }
+            await database.DeleteAsync<ContactInfo>(contactInfo.ID);
+        }
+        return await database.DeleteAsync<ShopBranch>(id);
+    }
 
     public static async Task PopulateShopBranchesAsync()
     {
