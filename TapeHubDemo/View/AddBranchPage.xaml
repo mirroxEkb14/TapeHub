@@ -15,25 +15,26 @@
         <VerticalStackLayout Padding="20" Spacing="15">
             <Label Text="Add Shop Branch" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
 
-            <!-- Name -->
-            <Label Text="Name:" FontAttributes="Bold" />
-            <Entry Text="{Binding Name}" Placeholder="e.g., Kutná Hora Branch" />
+            <!-- Location Section -->
+            <Label Text="Step 1: Location Details" FontAttributes="Bold" FontSize="18" TextColor="#8B4513" />
+            <Entry Placeholder="e.g., Czechia" Text="{Binding Location.Country}" />
+            <Entry Placeholder="e.g., Kutná Hora" Text="{Binding Location.City}" />
+            <Entry Placeholder="e.g., Barborská" Text="{Binding Location.Street}" />
+            <Entry Placeholder="e.g., 1" Keyboard="Numeric" Text="{Binding Location.Number}" />
+            <Entry Placeholder="e.g., 284 01" Text="{Binding Location.ZIP}" />
 
-            <!-- Opening Hours -->
-            <Label Text="Opening Hours:" FontAttributes="Bold" />
-            <Entry Text="{Binding OpeningHours}" Placeholder="e.g., Opened From: 08:00" />
+            <!-- Contact Info Section -->
+            <Label Text="Step 2: Contact Info" FontAttributes="Bold" FontSize="18" TextColor="#8B4513" Margin="0,20,0,0" />
+            <Entry Placeholder="e.g., kutnahora@tapehub.cz" Text="{Binding ContactInfo.Email}" />
+            <Entry Placeholder="e.g., +420 111 222 333" Text="{Binding ContactInfo.Phone}" />
 
-            <!-- Closing Hours -->
-            <Label Text="Closing Hours:" FontAttributes="Bold" />
-            <Entry Text="{Binding ClosingHours}" Placeholder="e.g., Closed From: 20:00" />
-
-            <!-- Stock Quantity -->
-            <Label Text="Stock Quantity:" FontAttributes="Bold" />
-            <Entry Text="{Binding StockQuantity}" Placeholder="e.g., 0" />
-
-            <!-- Image Path -->
-            <Label Text="Image Path:" FontAttributes="Bold" />
-            <Entry Text="{Binding ImagePath}" Placeholder="e.g., shopbranch_6.png" />
+            <!-- Shop Branch Section -->
+            <Label Text="Step 3: Shop Branch Details" FontAttributes="Bold" FontSize="18" TextColor="#8B4513" Margin="0,20,0,0" />
+            <Entry Placeholder="e.g., Kutná Hora Branch" Text="{Binding ShopBranch.Name}" />
+            <Entry Placeholder="e.g., Opened From: 08:00" Text="{Binding ShopBranch.OpeningHours}" />
+            <Entry Placeholder="e.g., Closed From: 20:00" Text="{Binding ShopBranch.ClosingHours}" />
+            <Entry Placeholder="e.g., 0" Keyboard="Numeric" Text="{Binding ShopBranch.StockQuantity}" />
+            <Entry Placeholder="e.g., shopbranch_6.png" Text="{Binding ShopBranch.ImagePath}" />
 
             <!-- Error Message -->
             <Label Text="{Binding ErrorMessage}"
