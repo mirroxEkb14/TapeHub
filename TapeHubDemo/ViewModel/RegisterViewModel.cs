@@ -116,10 +116,8 @@ public partial class RegisterViewModel : ObservableObject
         if (Page != null)
             // -Page Animation-
 
-        if (App.Current?.MainPage != null)
-            await AlertDisplayer.DisplayAlertAsync("Success", "Your account has been created!", "OK");
-
-        await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+        await AlertDisplayer.DisplayAlertAsync("Success", "Your account has been created!", "OK");
+        await Shell.Current.GoToAsync($"//{nameof(LoginPage)}?username={Username}&password={Password}");
     }
     #endregion
 }

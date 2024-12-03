@@ -26,7 +26,9 @@ public partial class LoginViewModel : ObservableObject
     public LoginViewModel()
     {
         _errorMessage = string.Empty;
-        LoadAdminCredentialsAsync();
+
+        if (AreEmptyFields())
+            LoadAdminCredentialsAsync();
     }
 
     //
@@ -111,5 +113,10 @@ public partial class LoginViewModel : ObservableObject
         await label.FadeTo(0.5, 100, Easing.CubicOut);
         await label.FadeTo(1.0, 100, Easing.CubicIn);
     }
+    #endregion
+
+    #region Private Helper Methods
+    private bool AreEmptyFields() =>
+        string.IsNullOrEmpty(Username) && string.IsNullOrEmpty(Password);
     #endregion
 }
