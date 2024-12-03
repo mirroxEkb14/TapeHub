@@ -78,20 +78,7 @@ public partial class ShopBranchesViewModel : ObservableObject
             await AlertDisplayer.DisplayAlertAsync("Edit Branch", "Please select a branch to edit.", "OK");
             return;
         }
-
-        SelectedBranch.Name = "Edited Kutná Hora Branch";
-        SelectedBranch.OpeningHours = "Opened From: 05:00";
-        SelectedBranch.ClosingHours = "Closed From: 23:00";
-        SelectedBranch.ImagePath = "shopbranch_6.png";
-
-        var result = await ShopBranchService.UpdateShopBranchAsync(SelectedBranch);
-        if (result > 0)
-        {
-            var index = Branches.IndexOf(SelectedBranch);
-            Branches.RemoveAt(index);
-            Branches.Insert(index, SelectedBranch);
-            await AlertDisplayer.DisplayAlertAsync("Edit Branch", "Logic for editing a branch goes here.", "OK");
-        }
+        await Shell.Current.GoToAsync($"{nameof(EditBranchPage)}?shopBranchId={SelectedBranch.ID}");
     }
 
     [RelayCommand]

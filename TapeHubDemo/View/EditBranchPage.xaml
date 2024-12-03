@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TapeHubDemo.View.EditBranchPage"
+             xmlns:vm="clr-namespace:TapeHubDemo.ViewModel"
+             Title="Edit Shop Branch"
+             BackgroundColor="#FAF3E0">
+
+    <ContentPage.BindingContext>
+        <vm:EditBranchViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="20">
+            <!-- Section 1: Location -->
+            <Label Text="Location Information" FontAttributes="Bold" FontSize="18" TextColor="#8B4513" />
+            <Entry Placeholder="Country" Text="{Binding Location.Country}" />
+            <Entry Placeholder="City" Text="{Binding Location.City}" />
+            <Entry Placeholder="Street" Text="{Binding Location.Street}" />
+            <Entry Placeholder="Number" Keyboard="Numeric" Text="{Binding Location.Number}" />
+            <Entry Placeholder="ZIP Code" Text="{Binding Location.ZIP}" />
+
+            <!-- Section 2: Contact Info -->
+            <Label Text="Contact Information" FontAttributes="Bold" FontSize="18" TextColor="#8B4513" />
+            <Entry Placeholder="Email" Text="{Binding ContactInfo.Email}" />
+            <Entry Placeholder="Phone" Text="{Binding ContactInfo.Phone}" />
+
+            <!-- Section 3: Shop Branch -->
+            <Label Text="Shop Branch Information" FontAttributes="Bold" FontSize="18" TextColor="#8B4513" />
+            <Entry Placeholder="Name" Text="{Binding ShopBranch.Name}" />
+            <Entry Placeholder="Opening Hours" Text="{Binding ShopBranch.OpeningHours}" />
+            <Entry Placeholder="Closing Hours" Text="{Binding ShopBranch.ClosingHours}" />
+            <Entry Placeholder="Stock Quantity" Keyboard="Numeric" Text="{Binding ShopBranch.StockQuantity}" />
+            <Entry Placeholder="Image Path" Text="{Binding ShopBranch.ImagePath}" />
+
+            <!-- Save Changes Button -->
+            <Button Text="Save Changes" BackgroundColor="#4CAF50" TextColor="White" Command="{Binding SaveChangesCommand}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
