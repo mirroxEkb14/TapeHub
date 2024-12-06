@@ -4,7 +4,7 @@
              xmlns:vm="clr-namespace:TapeHubDemo.ViewModel"
              x:Class="TapeHubDemo.View.AddBranchPage"
              BackgroundColor="#FAF3E0"
-             Title="Add Shop Branch">
+             Title="{StaticResource AddBranchTitle}">
 
     <!-- Setting the binding context to AddBranchViewModel -->
     <ContentPage.BindingContext>
@@ -13,34 +13,34 @@
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
-            <Label Text="Add Shop Branch" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
+            <Label Text="{StaticResource AddBranchAddShopBranchHeader}" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
 
             <!-- Location Section -->
-            <Label Text="Step 1: Location Details" FontAttributes="Bold" FontSize="18" TextColor="#8B4513" />
-            <Entry Placeholder="e.g., Czechia" Text="{Binding Location.Country}" />
-            <Entry Placeholder="e.g., Kutná Hora" Text="{Binding Location.City}" />
-            <Entry Placeholder="e.g., Barborská" Text="{Binding Location.Street}" />
-            <Entry Placeholder="e.g., 1" Keyboard="Numeric" Text="{Binding Location.Number}" />
-            <Entry Placeholder="e.g., 284 01" Text="{Binding Location.ZIP}" />
+            <Label Text="{StaticResource AddBranchTextStepOne}" FontAttributes="Bold" FontSize="18" TextColor="#8B4513" />
+            <Entry Placeholder="{StaticResource AddBranchEntryCountry}" Text="{Binding Location.Country}" />
+            <Entry Placeholder="{StaticResource AddBranchEntryCity}" Text="{Binding Location.City}" />
+            <Entry Placeholder="{StaticResource AddBranchEntryStreet}" Text="{Binding Location.Street}" />
+            <Entry Placeholder="{StaticResource AddBranchEntryStreetNumber}" Keyboard="Numeric" Text="{Binding Location.Number}" />
+            <Entry Placeholder="{StaticResource AddBranchEntryZIP}" Text="{Binding Location.ZIP}" />
 
             <!-- Contact Info Section -->
-            <Label Text="Step 2: Contact Info" FontAttributes="Bold" FontSize="18" TextColor="#8B4513" Margin="0,20,0,0" />
-            <Entry Placeholder="e.g., kutnahora@tapehub.cz" Text="{Binding ContactInfo.Email}" />
-            <Entry Placeholder="e.g., +420 111 222 333" Text="{Binding ContactInfo.Phone}" />
+            <Label Text="{StaticResource AddBranchTextStepTwo}" FontAttributes="Bold" FontSize="18" TextColor="#8B4513" Margin="0,20,0,0" />
+            <Entry Placeholder="{StaticResource AddBranchEntryEmail}" Text="{Binding ContactInfo.Email}" />
+            <Entry Placeholder="{StaticResource AddBranchEntryPhone}" Text="{Binding ContactInfo.Phone}" />
 
             <!-- Shop Branch Section -->
-            <Label Text="Step 3: Shop Branch Details" FontAttributes="Bold" FontSize="18" TextColor="#8B4513" Margin="0,20,0,0" />
-            <Entry Placeholder="e.g., Kutná Hora Branch" Text="{Binding ShopBranch.Name}" />
-            <Entry Placeholder="e.g., Opened From: 08:00" Text="{Binding ShopBranch.OpeningHours}" />
-            <Entry Placeholder="e.g., Closed From: 20:00" Text="{Binding ShopBranch.ClosingHours}" />
-            <Entry Placeholder="e.g., 0" Keyboard="Numeric" Text="{Binding ShopBranch.StockQuantity}" />
-            <Entry Placeholder="e.g., shopbranch_6.png" Text="{Binding ShopBranch.ImagePath}" />
+            <Label Text="{StaticResource AddBranchTextStepThree}" FontAttributes="Bold" FontSize="18" TextColor="#8B4513" Margin="0,20,0,0" />
+            <Entry Placeholder="{StaticResource AddBranchEntryShopBranchName}" Text="{Binding ShopBranch.Name}" />
+            <Entry Placeholder="{StaticResource AddBranchEntryShopBranchOpenedFrom}" Text="{Binding ShopBranch.OpeningHours}" />
+            <Entry Placeholder="{StaticResource AddBranchEntryShopBranchClosedFrom}" Text="{Binding ShopBranch.ClosingHours}" />
+            <Entry Placeholder="{StaticResource AddBranchEntryShopBranchStockQuantity}" Keyboard="Numeric" Text="{Binding ShopBranch.StockQuantity}" />
+            <Entry Placeholder="{StaticResource AddBranchEntryShopBranchImagePath}" Text="{Binding ShopBranch.ImagePath}" />
 
             <!-- Error Message -->
             <Label Text="{Binding ErrorMessage}" TextColor="Red" IsVisible="{Binding ErrorMessage, Converter={StaticResource NullToVisibilityConverter}}" />
 
             <!-- Save Button -->
-            <Button Text="Add Branch" BackgroundColor="#4CAF50" TextColor="White" FontAttributes="Bold" Command="{Binding AddBranchCommand}" />
+            <Button Text="{StaticResource AddBranchTextAddBranch}" BackgroundColor="#4CAF50" TextColor="White" FontAttributes="Bold" Command="{Binding AddBranchCommand}" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

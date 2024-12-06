@@ -18,17 +18,17 @@
 
     <StackLayout Padding="30" Spacing="20" VerticalOptions="Start">
         <!-- App Logo -->
-        <Image Source="escape_logo.png" HeightRequest="170" HorizontalOptions="Center" />
+        <Image Source="{StaticResource LoginImageAppLogo}" HeightRequest="170" HorizontalOptions="Center" />
 
         <!-- Login Header -->
-        <Label Text="Login to Your Account"
+        <Label Text="{StaticResource LoginTextLoginHeader}"
                FontSize="20"
                FontAttributes="Bold"
                TextColor="#8B4513"
                HorizontalTextAlignment="Center" />
 
         <!-- Username Entry -->
-        <Entry Placeholder="Username"
+        <Entry Placeholder="{StaticResource LoginEntryUsername}"
                PlaceholderColor="#8B4513"
                TextColor="#4A4A4A"
                FontSize="16"
@@ -38,7 +38,7 @@
                Text="{Binding Username, Mode=TwoWay}" />
 
         <!-- Password Entry -->
-        <Entry Placeholder="Password"
+        <Entry Placeholder="{StaticResource LoginEntryPassword}"
                PlaceholderColor="#8B4513"
                TextColor="#4A4A4A"
                FontSize="16"
@@ -55,7 +55,7 @@
                IsVisible="{Binding ErrorMessage, Converter={StaticResource NullToVisibilityConverter}}" />
 
         <!-- Login Button -->
-        <Button Text="Log In"
+        <Button Text="{StaticResource LoginTextLogin}"
                 BackgroundColor="#8B4513"
                 TextColor="White"
                 FontAttributes="Bold"
@@ -66,7 +66,7 @@
 
         <!-- Forgot Password Link -->
         <Label x:Name="ForgotPasswordLabel"
-               Text="Forgot your password?"
+               Text="{StaticResource LoginTextForgottenPassword}"
                TextColor="#8B4513"
                FontSize="14"
                HorizontalOptions="Center"
@@ -78,7 +78,7 @@
 
         <!-- Sign Up Link -->
         <Label x:Name="DontHaveAccountLabel"
-               Text="Don't have an account? Sign up here!"
+               Text="{StaticResource LoginTextSignup}"
                TextColor="#8B4513"
                FontSize="14"
                HorizontalOptions="Center"

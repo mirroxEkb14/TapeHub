@@ -3,28 +3,35 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:TapeHubDemo.ViewModel"
              x:Class="TapeHubDemo.View.EditProductPage"
-             Title="Edit Product">
+             BackgroundColor="#FAF3E0"
+             Title="{StaticResource EditProductTitle}">
+
+    <!--
+    The «ContentPage.BindingContext» (data binding context) of this page is set to an instance of «EditProductViewModel»
+    dynamically in the code-behind file using the «IQueryAttributable» interface.
+    The «No DataContext found for Binding 'Title' [and other fields]» warning is ignored here, as it is resolved at runtime.
+    -->
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
-            <Label Text="Title" FontSize="Medium" />
+            <Label Text="{StaticResource ProductTitle}" FontSize="Medium" />
             <Entry Text="{Binding Title}" Placeholder="Product Title" />
 
-            <Label Text="Description" FontSize="Medium" />
+            <Label Text="{StaticResource ProductDescription}" FontSize="Medium" />
             <Editor Text="{Binding Description}" Placeholder="Product Description" />
 
-            <Label Text="Price (€)" FontSize="Medium" />
+            <Label Text="{StaticResource ProductPrice}" FontSize="Medium" />
             <Entry Text="{Binding Price}" Placeholder="Product Price" Keyboard="Numeric" />
 
-            <Label Text="Type" FontSize="Medium" />
+            <Label Text="{StaticResource ProductType}" FontSize="Medium" />
             <Picker ItemsSource="{Binding ProductTypes}" SelectedItem="{Binding SelectedType}" />
 
-            <Label Text="Image Path" FontSize="Medium" />
+            <Label Text="{StaticResource ProductImagePath}" FontSize="Medium" />
             <Entry Text="{Binding ImagePath}" Placeholder="Product Image Path" />
 
             <Label Text="{Binding ErrorMessage}" TextColor="Red"  IsVisible="{Binding ErrorMessage, Converter={StaticResource NullToVisibilityConverter}}" />
 
-            <Button Text="Save Changes" Command="{Binding SaveProductCommand}" BackgroundColor="#4CAF50" TextColor="White" FontAttributes="Bold" />
+            <Button Text="{StaticResource EditProductTextSaveChanges}" Command="{Binding SaveProductCommand}" BackgroundColor="#4CAF50" TextColor="White" FontAttributes="Bold" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

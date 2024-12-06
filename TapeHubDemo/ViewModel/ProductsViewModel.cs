@@ -1,20 +1,19 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿#region Imports
+using CommunityToolkit.Mvvm.ComponentModel;
 using TapeHubDemo.Database;
 using TapeHubDemo.Model;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
-using TapeHubDemo.Control;
+using TapeHubDemo.Utils;
+#endregion
 
 namespace TapeHubDemo.ViewModel;
 
 public partial class ProductsViewModel : ObservableObject
 {
-    [ObservableProperty]
-    private ObservableCollection<Product> _products;
-    [ObservableProperty]
-    private Product? _selectedProduct;
-    [ObservableProperty]
-    private bool _isAdmin;
+    [ObservableProperty] private ObservableCollection<Product> _products;
+    [ObservableProperty] private Product? _selectedProduct;
+    [ObservableProperty] private bool _isAdmin;
 
     private readonly int _shopBranchId;
 
@@ -48,7 +47,7 @@ public partial class ProductsViewModel : ObservableObject
             ClearSelections();
             return;
         }
-        await AlertDisplayer.DisplayAlertAsync("Order Item", "Please visit our shop to order this item in person.", "OK");
+        await AlertDisplayer.DisplayAlertAsync(AlertDisplayer.ValidationOrderItem, MessageContainer.VisitingPhysicalShop, AlertDisplayer.OK);
     }
 
     [RelayCommand]
@@ -62,17 +61,17 @@ public partial class ProductsViewModel : ObservableObject
 
     [RelayCommand]
     public async Task AddProductAsync() =>
-        await Shell.Current.GoToAsync($"AddProductPage?branchId={_shopBranchId}");
+        await Shell.Current.GoToAsync(NavigationStateArguments.GetToAddProductPageWithShopBranchId(_shopBranchId));
 
     [RelayCommand]
     public async Task EditProductAsync()
     {
         if (SelectedProduct == null)
         {
-            await AlertDisplayer.DisplayAlertAsync("Edit Product", "No product selected for editing.", "OK");
+            await AlertDisplayer.DisplayAlertAsync(AlertDisplayer.ValidationEditProduct, MessageContainer.NoProductSelected, AlertDisplayer.OK);
             return;
         }
-        await Shell.Current.GoToAsync($"EditProductPage?productId={SelectedProduct.ID}&branchId={_shopBranchId}");
+        await Shell.Current.GoToAsync(NavigationStateArguments.GetToEditProductPageWithProductIdShopBranchId(SelectedProduct.ID, _shopBranchId));
     }
 
     [RelayCommand]
@@ -80,7 +79,7 @@ public partial class ProductsViewModel : ObservableObject
     {
         if (SelectedProduct == null)
         {
-            await AlertDisplayer.DisplayAlertAsync("Remove Product", "No product selected for removing.", "OK");
+            await AlertDisplayer.DisplayAlertAsync(AlertDisplayer.ValidationDeleteProduct, MessageContainer.NoProductSelected, AlertDisplayer.OK);
             return;
         }
 
@@ -89,7 +88,7 @@ public partial class ProductsViewModel : ObservableObject
         {
             Products.Remove(SelectedProduct);
             ClearSelections();
-            await AlertDisplayer.DisplayAlertAsync("Remove Product", "Selected product was successfully removed.", "OK");
+            await AlertDisplayer.DisplayAlertAsync(AlertDisplayer.ValidationDeleteProduct, MessageContainer.SuccessMessageDeletingProduct, AlertDisplayer.OK);
         }
     }
 

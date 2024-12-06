@@ -1,29 +1,24 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿#region Imports
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
-using TapeHubDemo.Control;
 using TapeHubDemo.Database;
 using TapeHubDemo.Enumeration;
 using TapeHubDemo.Model;
+using TapeHubDemo.Utils;
+#endregion
 
 namespace TapeHubDemo.ViewModel;
 
 public partial class EditProductViewModel : ObservableObject
 {
-    [ObservableProperty]
-    private string? _title;
-    [ObservableProperty]
-    private string? _description;
-    [ObservableProperty]
-    private double _price;
-    [ObservableProperty]
-    private ProductType _selectedType;
-    [ObservableProperty]
-    private string? _imagePath;
-    [ObservableProperty]
-    private ObservableCollection<ProductType> _productTypes;
-    [ObservableProperty]
-    private string _errorMessage;
+    [ObservableProperty] private string? _title;
+    [ObservableProperty] private string? _description;
+    [ObservableProperty] private double _price;
+    [ObservableProperty] private ProductType _selectedType;
+    [ObservableProperty] private string? _imagePath;
+    [ObservableProperty] private ObservableCollection<ProductType> _productTypes;
+    [ObservableProperty] private string _errorMessage;
 
     private readonly int _shopBranchId;
     private readonly Product _originalProduct;
@@ -52,7 +47,7 @@ public partial class EditProductViewModel : ObservableObject
         {
             if (!IsProductChanged())
             {
-                await AlertDisplayer.DisplayAlertAsync("No Changes", "No changes were made to the product.", "OK");
+                await AlertDisplayer.DisplayAlertAsync(AlertDisplayer.ValidationNoChanges, MessageContainer.NoChangesEditing, AlertDisplayer.OK);
                 return;
             }
 
@@ -61,22 +56,28 @@ public partial class EditProductViewModel : ObservableObject
         }
         catch (Exception ex)
         {
-            ErrorMessage = $"Error: {ex.Message}";
+            ErrorMessage = MessageContainer.GetUnexpectedErrorMessage(ex.Message);
         }
     }
 
     #region Private Helper Methods
     private bool ValidateInputs()
     {
-        if (string.IsNullOrWhiteSpace(Title) ||
-            string.IsNullOrWhiteSpace(Description) ||
-            string.IsNullOrWhiteSpace(ImagePath) ||
-            Price <= 0)
+        if (string.IsNullOrWhiteSpace(Title))
         {
-            ErrorMessage = "All fields must be filled correctly.";
+            ErrorMessage = MessageContainer.ProcutTitleRequired;
             return false;
         }
-
+        if (string.IsNullOrWhiteSpace(Description))
+        {
+            ErrorMessage = MessageContainer.ProductDescriptionRequired;
+            return false;
+        }
+        if (Price <= 0)
+        {
+            ErrorMessage = MessageContainer.ProductPricePositive;
+            return false;
+        }
         ErrorMessage = string.Empty;
         return true;
     }
@@ -105,12 +106,12 @@ public partial class EditProductViewModel : ObservableObject
         var result = await ProductService.UpdateProductAsync(updatedProduct);
         if (result > 0)
         {
-            await AlertDisplayer.DisplayAlertAsync("Success", "Product updated successfully!", "OK");
+            await AlertDisplayer.DisplayAlertAsync(AlertDisplayer.ValidationSuccess, MessageContainer.SuccessMessageEditingProduct, AlertDisplayer.OK);
             await Shell.Current.GoToAsync("..");
         }
         else
         {
-            ErrorMessage = "Failed to update the product. Please try again.";
+            ErrorMessage = MessageContainer.ErrorMessageEditingProduct;
         }
     }
     #endregion

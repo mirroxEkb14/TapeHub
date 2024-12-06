@@ -4,31 +4,32 @@
              xmlns:vm="clr-namespace:TapeHubDemo.ViewModel"
              x:Class="TapeHubDemo.View.AddProductPage"
              Shell.FlyoutBehavior="Disabled"
-             Title="Add Product">
+             BackgroundColor="#FAF3E0"
+             Title="{StaticResource AddProductTitle}">
 
     <!--- The «BindingContext» for this page («AddProductViewModel») is set dynamically in the code-behind,
     as there is no a constractor without parameters for the «AddProductViewModel». -->
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
-            <Label Text="Title" FontSize="Medium" />
-            <Entry Text="{Binding Title}" Placeholder="e.g., The X-files" />
-            
-            <Label Text="Description" FontSize="Medium" />
-            <Editor Text="{Binding Description}" Placeholder="e.g., A science fiction film" />
+            <Label Text="{StaticResource ProductTitle}" FontSize="Medium" />
+            <Entry Text="{Binding Title}" Placeholder="{StaticResource AddProductEntryTitle}" />
 
-            <Label Text="Price (€)" FontSize="Medium" />
-            <Entry Text="{Binding Price}" Placeholder="49.9€" Keyboard="Numeric" />
+            <Label Text="{StaticResource ProductDescription}" FontSize="Medium" />
+            <Editor Text="{Binding Description}" Placeholder="{StaticResource AddProductEntryDescription}" />
 
-            <Label Text="Type" FontSize="Medium" />
+            <Label Text="{StaticResource ProductPrice}" FontSize="Medium" />
+            <Entry Text="{Binding Price}" Placeholder="{StaticResource AddProductEntryPrice}" Keyboard="Numeric" />
+
+            <Label Text="{StaticResource ProductType}" FontSize="Medium" />
             <Picker ItemsSource="{Binding ProductTypes}" SelectedItem="{Binding SelectedType}" />
 
-            <Label Text="Image Path" FontSize="Medium" />
-            <Entry Text="{Binding ImagePath}" Placeholder="e.g., product_vhs_the_x_files.png" />
+            <Label Text="{StaticResource ProductImagePath}" FontSize="Medium" />
+            <Entry Text="{Binding ImagePath}" Placeholder="{StaticResource AddProductEntryImagePath}" />
 
             <Label Text="{Binding ErrorMessage}" TextColor="Red" IsVisible="{Binding ErrorMessage, Converter={StaticResource NullToVisibilityConverter}}" />
-            
-            <Button Text="Save Product" Command="{Binding SaveProductCommand}" BackgroundColor="#4CAF50" TextColor="White" FontAttributes="Bold" />
+
+            <Button Text="{StaticResource AddProductTextSaveChanges}" Command="{Binding SaveProductCommand}" BackgroundColor="#4CAF50" TextColor="White" FontAttributes="Bold" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

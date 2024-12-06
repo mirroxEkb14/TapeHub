@@ -1,4 +1,4 @@
-﻿using TapeHubDemo.View;
+﻿using TapeHubDemo.Utils;
 
 namespace TapeHubDemo;
 
@@ -34,12 +34,12 @@ public partial class MainPage : ContentPage
     //     Navigates to the LoginPage after the animation is done with the optional delay for a smooth transition.
     private async Task StartPuzzleAnimation()
     {
-        var typewriterTask = ShowSloganWithTypewriterEffect(SloganLabel, "Discover the Classics");
+        var typewriterTask = ShowSloganWithTypewriterEffect(SloganLabel, MessageContainer.SloganText);
         await AnimatePiecesSequentially();
         await typewriterTask;
 
         await Task.Delay(500);
-        await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
+        await Shell.Current.GoToAsync(NavigationStateArguments.ToLoginPage);
     }
 
     #region Logo Animations

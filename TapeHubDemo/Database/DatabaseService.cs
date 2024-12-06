@@ -1,6 +1,8 @@
-﻿using SQLite;
+﻿#region Imports
+using SQLite;
 using TapeHubDemo.Model;
 using Location = TapeHubDemo.Model.Location;
+#endregion
 
 namespace TapeHubDemo.Database;
 

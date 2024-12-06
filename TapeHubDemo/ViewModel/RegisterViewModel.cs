@@ -1,24 +1,19 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿#region Imports
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using TapeHubDemo.Control;
 using TapeHubDemo.Database;
+using TapeHubDemo.Utils;
 using TapeHubDemo.View;
+#endregion
 
 namespace TapeHubDemo.ViewModel;
 
 public partial class RegisterViewModel : ObservableObject
 {
-    [ObservableProperty]
-    private string? _username;
-
-    [ObservableProperty]
-    private string? _password;
-
-    [ObservableProperty]
-    private string? _confirmPassword;
-
-    [ObservableProperty]
-    private string _errorMessage;
+    [ObservableProperty] private string? _username;
+    [ObservableProperty] private string? _password;
+    [ObservableProperty] private string? _confirmPassword;
+    [ObservableProperty] private string _errorMessage;
 
     public RegisterViewModel() =>
         ErrorMessage = string.Empty;
@@ -34,7 +29,7 @@ public partial class RegisterViewModel : ObservableObject
         if (!ValidateInputs())
             return;
 
-        if (await IsUsernameTaken(Username))
+        if (await IsUsernameTaken(Username!))
             return;
 
         try
@@ -45,11 +40,11 @@ public partial class RegisterViewModel : ObservableObject
             if (result > 0)
                 await OnSuccessfulRegistration();
             else
-                ErrorMessage = "Failed to create the account.";
+                ErrorMessage = MessageContainer.RegisterFailedAccountCreation;
         }
         catch (Exception ex)
         {
-            ErrorMessage = $"Error: {ex.Message}";
+            ErrorMessage = MessageContainer.GetUnexpectedErrorMessage(ex.Message);
         }
     }
 
@@ -61,14 +56,24 @@ public partial class RegisterViewModel : ObservableObject
     //     «True» if inputs are valid, otherwise «False».
     private bool ValidateInputs()
     {
-        if (string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password) || string.IsNullOrEmpty(ConfirmPassword))
+        if (string.IsNullOrEmpty(Username))
         {
-            HandleError("All fields are required.");
+            HandleError(MessageContainer.RegisterUsernameRequired);
+            return false;
+        }
+        if (string.IsNullOrEmpty(Password))
+        {
+            HandleError(MessageContainer.RegisterPasswordRequired);
+            return false;
+        }
+        if (string.IsNullOrEmpty(ConfirmPassword))
+        {
+            HandleError(MessageContainer.RegisterConfirmPasswordRequired);
             return false;
         }
         if (Password != ConfirmPassword)
         {
-            HandleError("Passwords do not match.");
+            HandleError(MessageContainer.RegisterPasswordMismatch);
             return false;
         }
         return true;
@@ -80,7 +85,6 @@ public partial class RegisterViewModel : ObservableObject
     private void HandleError(string message) =>
         ErrorMessage = message;
 
-
     //
     // Summary:
     //     Checks if the username is already taken.
@@ -89,7 +93,7 @@ public partial class RegisterViewModel : ObservableObject
         var existingUser = await UserService.GetUserByUsernameAsync(username);
         if (existingUser != null)
         {
-            ErrorMessage = "Username already exists. Please choose a different one.";
+            ErrorMessage = MessageContainer.RegisterUsernameTaken;
             return true;
         }
         return false;
@@ -116,8 +120,8 @@ public partial class RegisterViewModel : ObservableObject
         if (Page != null)
             // -Page Animation-
 
-        await AlertDisplayer.DisplayAlertAsync("Success", "Your account has been created!", "OK");
-        await Shell.Current.GoToAsync($"//{nameof(LoginPage)}?username={Username}&password={Password}");
+        await AlertDisplayer.DisplayAlertAsync(AlertDisplayer.ValidationSuccess, MessageContainer.RegisterAccountCreated, AlertDisplayer.OK);
+        await Shell.Current.GoToAsync(NavigationStateArguments.GetToLoginPageWithUsernamePassword(Username!, Password!));
     }
     #endregion
 }

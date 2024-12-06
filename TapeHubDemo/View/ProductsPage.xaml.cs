@@ -1,3 +1,4 @@
+using TapeHubDemo.Utils;
 using TapeHubDemo.ViewModel;
 
 namespace TapeHubDemo.View;
@@ -21,16 +22,16 @@ public partial class ProductsPage : ContentPage, IQueryAttributable
     //         which ensures that the «ProductsViewModel» receives the «branchId» directly in its constructor.
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        if (query.ContainsKey("branchId"))
+        if (query.ContainsKey(QueryParameterKeys.BranchId))
         {
-            int branchId = Convert.ToInt32(query["branchId"]);
+            int branchId = Convert.ToInt32(query[QueryParameterKeys.BranchId]);
             BindingContext = new ProductsViewModel(branchId);
             _viewModel = BindingContext as ProductsViewModel;
         }
 
-        if (query.ContainsKey("isAdmin"))
+        if (query.ContainsKey(QueryParameterKeys.IsAdmin))
         {
-            bool isAdmin = Convert.ToBoolean(query["isAdmin"]);
+            bool isAdmin = Convert.ToBoolean(query[QueryParameterKeys.IsAdmin]);
             if (_viewModel != null)
                 _viewModel.IsAdmin = isAdmin;
         }

@@ -32,12 +32,12 @@ public static class LocationService
 
         var initialLocations = new List<Location>
         {
-            new() { Country = "Czech", City = "Pardubice", Street = "Masarykovo náměstí", Number = 1, ZIP = "53002" },
-            new() { Country = "Czech", City = "Praha", Street = "Václavské náměstí", Number = 5, ZIP = "11000" },
-            new() { Country = "Czech", City = "Liberec", Street = "Rumunská", Number = 13, ZIP = "46001" },
-            new() { Country = "Czech", City = "České Budějovice", Street = "Náměstí Přemysla Otakara II", Number = 42, ZIP = "37001" },
-            new() { Country = "Czech", City = "Ostrava", Street = "Masarykovo náměstí", Number = 25, ZIP = "70200" },
-            new() { Country = "Czech", City = "Praha", Street = "Chemická", Number = 951, ZIP = "14800" }
+            new() { Country = "Czechia", City = "Pardubice", Street = "Masarykovo náměstí", Number = 1, ZIP = "53002" },
+            new() { Country = "Czechia", City = "Praha", Street = "Václavské náměstí", Number = 5, ZIP = "11000" },
+            new() { Country = "Czechia", City = "Liberec", Street = "Rumunská", Number = 13, ZIP = "46001" },
+            new() { Country = "Czechia", City = "České Budějovice", Street = "Náměstí Přemysla Otakara II", Number = 42, ZIP = "37001" },
+            new() { Country = "Czechia", City = "Ostrava", Street = "Masarykovo náměstí", Number = 25, ZIP = "70200" },
+            new() { Country = "Czechia", City = "Praha", Street = "Chemická", Number = 951, ZIP = "14800" }
         };
 
         foreach (var location in initialLocations)

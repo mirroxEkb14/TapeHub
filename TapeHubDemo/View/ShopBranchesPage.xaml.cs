@@ -1,10 +1,11 @@
+using TapeHubDemo.Utils;
 using TapeHubDemo.ViewModel;
 
 namespace TapeHubDemo.View;
 
 public partial class ShopBranchesPage : ContentPage, IQueryAttributable
 {
-    private readonly ShopBranchesViewModel _viewModel;
+    private readonly ShopBranchesViewModel? _viewModel;
 
     public ShopBranchesPage()
     {
@@ -17,7 +18,8 @@ public partial class ShopBranchesPage : ContentPage, IQueryAttributable
     //     Receives and sets «IsAdmin» dynamically.
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        if (query.TryGetValue("isAdmin", out var isAdminValue) && bool.TryParse(isAdminValue.ToString(), out var isAdmin))
+        if (query.TryGetValue(QueryParameterKeys.IsAdmin, out var isAdminValue) &&
+            bool.TryParse(isAdminValue.ToString(), out var isAdmin))
         {
             if (_viewModel != null)
                 _viewModel.IsAdmin = isAdmin;
@@ -30,6 +32,7 @@ public partial class ShopBranchesPage : ContentPage, IQueryAttributable
     protected override async void OnNavigatedTo(NavigatedToEventArgs args)
     {
         base.OnNavigatedTo(args);
-        await _viewModel.RefreshShopBranchesAsync();
+        if (_viewModel != null)
+            await _viewModel.RefreshShopBranchesAsync();
     }
 }

@@ -1,21 +1,20 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿#region Imports
+using CommunityToolkit.Mvvm.ComponentModel;
 using TapeHubDemo.Database;
 using TapeHubDemo.Model;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 using TapeHubDemo.View;
-using TapeHubDemo.Control;
+using TapeHubDemo.Utils;
+#endregion
 
 namespace TapeHubDemo.ViewModel;
 
 public partial class ShopBranchesViewModel : ObservableObject
 {
-    [ObservableProperty]
-    private ObservableCollection<ShopBranch> _branches = [];
-    [ObservableProperty]
-    private ShopBranch? _selectedBranch;
-    [ObservableProperty]
-    private bool _isAdmin;
+    [ObservableProperty] private ObservableCollection<ShopBranch> _branches;
+    [ObservableProperty] private ShopBranch? _selectedBranch;
+    [ObservableProperty] private bool _isAdmin;
 
     public ShopBranchesViewModel()
     {
@@ -50,7 +49,7 @@ public partial class ShopBranchesViewModel : ObservableObject
             ClearSelections();
             return;
         }
-        await Shell.Current.GoToAsync($"ProductsPage?branchId={selectedBranch.ID}&isAdmin={IsAdmin}");
+        await Shell.Current.GoToAsync(NavigationStateArguments.GetToProductsPageWithShopBranchIdIsAdmin(selectedBranch.ID, IsAdmin));
     }
 
     //
@@ -67,18 +66,18 @@ public partial class ShopBranchesViewModel : ObservableObject
     }
 
     [RelayCommand]
-    public async Task AddBranchAsync() =>
-        await Shell.Current.GoToAsync($"{nameof(AddBranchPage)}");
+    public static async Task AddBranchAsync() =>
+        await Shell.Current.GoToAsync(NavigationStateArguments.ToAddBranchPage);
 
     [RelayCommand]
     public async Task EditBranchAsync()
     {
         if (SelectedBranch == null)
         {
-            await AlertDisplayer.DisplayAlertAsync("Edit Branch", "Please select a branch to edit.", "OK");
+            await AlertDisplayer.DisplayAlertAsync(AlertDisplayer.ValidationEditBranch, MessageContainer.NoShopBranchSelected, AlertDisplayer.OK);
             return;
         }
-        await Shell.Current.GoToAsync($"{nameof(EditBranchPage)}?shopBranchId={SelectedBranch.ID}");
+        await Shell.Current.GoToAsync(NavigationStateArguments.GetToEditBranchPageWithShopBranchId(SelectedBranch.ID));
     }
 
     [RelayCommand]
@@ -86,7 +85,7 @@ public partial class ShopBranchesViewModel : ObservableObject
     {
         if (SelectedBranch == null)
         {
-            await AlertDisplayer.DisplayAlertAsync("Delete Branch", "Please select a branch to delete.", "OK");
+            await AlertDisplayer.DisplayAlertAsync(AlertDisplayer.ValidationDeleteBranch, MessageContainer.NoShopBranchSelected, AlertDisplayer.OK);
             return;
         }
 
@@ -95,7 +94,7 @@ public partial class ShopBranchesViewModel : ObservableObject
         {
             Branches.Remove(SelectedBranch);
             ClearSelections();
-            await AlertDisplayer.DisplayAlertAsync("Delete Branch", "Selected branch was successfully removed.", "OK");
+            await AlertDisplayer.DisplayAlertAsync(AlertDisplayer.ValidationDeleteBranch, MessageContainer.SuccessMessageDeletingShopBranch, AlertDisplayer.OK);
         }
     }
 

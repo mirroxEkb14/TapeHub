@@ -1,4 +1,5 @@
 using TapeHubDemo.ViewModel;
+using TapeHubDemo.Utils;
 
 namespace TapeHubDemo.View;
 
@@ -17,10 +18,14 @@ public partial class EditBranchPage : ContentPage, IQueryAttributable
     //     Receives the shop branch ID when navigating to the «EditBranchPage».
     public async void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        if (query.ContainsKey("shopBranchId"))
+        if (query.ContainsKey(QueryParameterKeys.ShopBranchId))
         {
-            var shopBranchId = int.Parse(query["shopBranchId"].ToString());
-            await _viewModel.LoadBranchDataAsync(shopBranchId);
+            var parameterKey = query[QueryParameterKeys.ShopBranchId].ToString();
+            if (parameterKey != null)
+            {
+                var shopBranchId = int.Parse(parameterKey);
+                await _viewModel.LoadBranchDataAsync(shopBranchId);
+            }
         }
     }
 }

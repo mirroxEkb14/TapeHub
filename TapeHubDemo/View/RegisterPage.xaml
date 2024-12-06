@@ -12,21 +12,21 @@
     </ContentPage.BindingContext>
 
     <StackLayout Padding="30" Spacing="20" VerticalOptions="Start">
-        <Label Text="Create Your Account"
+        <Label Text="{StaticResource RegisterTextRegisterHeader}"
                FontSize="20"
                FontAttributes="Bold"
                TextColor="#8B4513"
                HorizontalTextAlignment="Center" />
 
         <!-- Username Entry -->
-        <Entry Placeholder="Username"
+        <Entry Placeholder="{StaticResource RegisterEntryUsername}"
                Text="{Binding Username, Mode=TwoWay}"
                BackgroundColor="White"
                PlaceholderColor="#8B4513"
                TextColor="#4A4A4A" />
 
         <!-- Password Entry -->
-        <Entry Placeholder="Password"
+        <Entry Placeholder="{StaticResource RegisterEntryPassword}"
                Text="{Binding Password, Mode=TwoWay}"
                BackgroundColor="White"
                IsPassword="True"
@@ -34,7 +34,7 @@
                TextColor="#4A4A4A" />
 
         <!-- Confirm Password Entry -->
-        <Entry Placeholder="Confirm Password"
+        <Entry Placeholder="{StaticResource RegisterEntryConfirmPassword}"
                Text="{Binding ConfirmPassword, Mode=TwoWay}"
                BackgroundColor="White"
                IsPassword="True"
@@ -47,7 +47,7 @@
                IsVisible="{Binding ErrorMessage, Converter={StaticResource NullToVisibilityConverter}}" />
 
         <!-- Register Button -->
-        <Button Text="Sign Up"
+        <Button Text="{StaticResource RegisterTextSignUp}"
                 Command="{Binding RegisterCommand}"
                 BackgroundColor="#8B4513"
                 TextColor="White"

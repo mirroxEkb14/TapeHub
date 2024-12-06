@@ -1,10 +1,11 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿#region Imports
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using TapeHubDemo.Control;
 using TapeHubDemo.Database;
 using TapeHubDemo.Model;
-using TapeHubDemo.Validator;
+using TapeHubDemo.Utils;
 using Location = TapeHubDemo.Model.Location;
+#endregion
 
 namespace TapeHubDemo.ViewModel;
 
@@ -71,12 +72,12 @@ public partial class EditBranchViewModel : ObservableObject
             ShopBranch.ContactInfoID = ContactInfo.ID;
             await ShopBranchService.UpdateShopBranchAsync(ShopBranch);
 
-            await AlertDisplayer.DisplayAlertAsync("Success", "Shop branch updated successfully!", "OK");
-            await Shell.Current.GoToAsync($"//ShopBranchesPage");
+            await AlertDisplayer.DisplayAlertAsync(AlertDisplayer.ValidationSuccess, MessageContainer.SuccessMessageEditingShopBranch, AlertDisplayer.OK);
+            await Shell.Current.GoToAsync($"..");
         }
         catch (Exception ex)
         {
-            await AlertDisplayer.DisplayAlertAsync("Error", $"Failed to update the shop branch: {ex.Message}", "OK");
+            await AlertDisplayer.DisplayAlertAsync(AlertDisplayer.ValidationError, MessageContainer.GetUnexpectedErrorMessage(ex.Message), AlertDisplayer.OK);
         }
     }
 
@@ -106,7 +107,7 @@ public partial class EditBranchViewModel : ObservableObject
 
         bool areSameShopBranches = isLocationChanged || isContactInfoChanged || isShopBranchChanged;
         if (areSameShopBranches)
-            await AlertDisplayer.DisplayAlertAsync("No Changes", "No changes were made.", "OK");
+            await AlertDisplayer.DisplayAlertAsync(AlertDisplayer.ValidationNoChanges, MessageContainer.NoChangesEditing, AlertDisplayer.OK);
         return areSameShopBranches;
     }
     #endregion

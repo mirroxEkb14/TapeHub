@@ -11,8 +11,7 @@ public partial class RegisterPage : ContentPage
     {
         InitializeComponent();
 
-        var viewModel = BindingContext as RegisterViewModel;
-        if (viewModel != null)
+        if (BindingContext is RegisterViewModel viewModel)
             viewModel.Page = this;
     }
 }

@@ -1,7 +1,10 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿#region Imports
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using TapeHubDemo.Database;
 using TapeHubDemo.Enumeration;
+using TapeHubDemo.Utils;
+#endregion
 
 namespace TapeHubDemo.ViewModel;
 
@@ -11,12 +14,9 @@ namespace TapeHubDemo.ViewModel;
 //     Extends «ObservableObject» to support property change notifications (CommunityToolkit.Mvvm).
 public partial class LoginViewModel : ObservableObject
 {
-    [ObservableProperty]
-    private string? _username;
-    [ObservableProperty]
-    private string? _password;
-    [ObservableProperty]
-    private string _errorMessage;
+    [ObservableProperty] private string? _username;
+    [ObservableProperty] private string? _password;
+    [ObservableProperty] private string _errorMessage;
 
     //
     // Summary:
@@ -49,7 +49,7 @@ public partial class LoginViewModel : ObservableObject
         }
         catch (Exception ex)
         {
-            ErrorMessage = $"Unable to load admin credentials: {ex.Message}";
+            ErrorMessage = MessageContainer.GetErrorLoadingAdminCredentialsMessage(ex.Message);
         }
     }
 
@@ -61,16 +61,19 @@ public partial class LoginViewModel : ObservableObject
     [RelayCommand]
     public async Task LoginAsync()
     {
-        var user = await UserService.GetUserByUsernameAndPasswordAsync(Username, Password);
+        if (!ValidateInputs())
+            return;
+
+        var user = await UserService.GetUserByUsernameAndPasswordAsync(Username!, Password!);
         if (user != null)
         {
             var isAdmin = user.Role == UserRole.Admin;
             ErrorMessage = string.Empty;
-            await Shell.Current.GoToAsync($"ShopBranchesPage?isAdmin={isAdmin}");
+            await Shell.Current.GoToAsync(NavigationStateArguments.GetToShopBranchesPageWithIsAdmin(isAdmin));
         }
         else
         {
-            ErrorMessage = "Invalid username or password.";
+            ErrorMessage = MessageContainer.LoginInvalidCredentials;
         }
     }
 
@@ -85,7 +88,7 @@ public partial class LoginViewModel : ObservableObject
             await HighlightLabel(label);
 
         if (Page != null)
-            await Page.DisplayAlert("Forgotten Password", "Please, contact the Administrator: support@tapehub.com", "OK");
+            await Page.DisplayAlert(AlertDisplayer.ValidationForgottenPassword, MessageContainer.LoginAdminContact, AlertDisplayer.OK);
     }
 
     //
@@ -98,7 +101,7 @@ public partial class LoginViewModel : ObservableObject
         if (label != null)
             await HighlightLabel(label);
 
-        await Shell.Current.GoToAsync($"RegisterPage");
+        await Shell.Current.GoToAsync(NavigationStateArguments.ToRegisterPage);
     }
 
     #region Animation Methods
@@ -116,6 +119,21 @@ public partial class LoginViewModel : ObservableObject
     #endregion
 
     #region Private Helper Methods
+    private bool ValidateInputs()
+    {
+        if (string.IsNullOrEmpty(Username))
+        {
+            ErrorMessage = MessageContainer.LoginUsernameRequired;
+            return false;
+        }
+        if (string.IsNullOrEmpty(Password))
+        {
+            ErrorMessage = MessageContainer.LoginPasswordRequired;
+            return false;
+        }
+        return true;
+    }
+    
     private bool AreEmptyFields() =>
         string.IsNullOrEmpty(Username) && string.IsNullOrEmpty(Password);
     #endregion

@@ -31,7 +31,7 @@
 
                 <Image
                     x:Name="TopLeftPiece"
-                    Source="escape_logo_top_left.png"
+                    Source="{StaticResource ImageEscapeLogoTopLeft}"
                     HeightRequest="100"
                     WidthRequest="100"
                     Aspect="AspectFit"
@@ -41,7 +41,7 @@
 
                 <Image
                     x:Name="TopRightPiece"
-                    Source="escape_logo_top_right.png"
+                    Source="{StaticResource ImageEscapeLogoTopRight}"
                     HeightRequest="100"
                     WidthRequest="100"
                     Aspect="AspectFit"
@@ -51,7 +51,7 @@
 
                 <Image
                     x:Name="BottomLeftPiece"
-                    Source="escape_logo_bottom_left.png"
+                    Source="{StaticResource ImageEscapeLogoBottomLeft}"
                     HeightRequest="100"
                     WidthRequest="100"
                     Aspect="AspectFit"
@@ -61,7 +61,7 @@
 
                 <Image
                     x:Name="BottomRightPiece"
-                    Source="escape_logo_bottom_right.png"
+                    Source="{StaticResource ImageEscapeLogoBottomRight}"
                     HeightRequest="100"
                     WidthRequest="100"
                     Aspect="AspectFit"

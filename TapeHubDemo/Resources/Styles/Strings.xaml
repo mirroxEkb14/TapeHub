@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <!--- «MainPage» string values. -->
+    <x:String x:Key="ImageEscapeLogoTopLeft">escape_logo_top_left.png</x:String>
+    <x:String x:Key="ImageEscapeLogoTopRight">escape_logo_top_right.png</x:String>
+    <x:String x:Key="ImageEscapeLogoBottomLeft">escape_logo_bottom_left.png</x:String>
+    <x:String x:Key="ImageEscapeLogoBottomRight">escape_logo_bottom_right.png</x:String>
+    <!--- «LoginPage» string values. -->
+    <x:String x:Key="LoginImageAppLogo">escape_logo.png</x:String>
+    <x:String x:Key="LoginTextLoginHeader">Login to Your Account</x:String>
+    <x:String x:Key="LoginEntryUsername">Username</x:String>
+    <x:String x:Key="LoginEntryPassword">Password</x:String>
+    <x:String x:Key="LoginTextLogin">Log In</x:String>
+    <x:String x:Key="LoginTextForgottenPassword">Forgot your password?</x:String>
+    <x:String x:Key="LoginTextSignup">Don't have an account? Sign up here!</x:String>
+    <!--- «RegisterPage» string values. -->
+    <x:String x:Key="RegisterTextRegisterHeader">Create Your Account</x:String>
+    <x:String x:Key="RegisterEntryUsername">Username</x:String>
+    <x:String x:Key="RegisterEntryPassword">Password</x:String>
+    <x:String x:Key="RegisterEntryConfirmPassword">Confirm Password</x:String>
+    <x:String x:Key="RegisterTextSignUp">Sign Up</x:String>
+    <!--- «ShopBranchesPage» string values. -->
+    <x:String x:Key="ShopBranchesTitle">Shop Branches</x:String>
+    <x:String x:Key="ShopBranchesTextAdd">Add</x:String>
+    <x:String x:Key="ShopBranchesTextEdit">Edit</x:String>
+    <x:String x:Key="ShopBranchesTextDelete">Delete</x:String>
+    <!--- «ProductsPage» string values. -->
+    <x:String x:Key="ProductsTitle">Products</x:String>
+    <x:String x:Key="ProductsTextAdd">Add</x:String>
+    <x:String x:Key="ProductsTextEdit">Edit</x:String>
+    <x:String x:Key="ProductsTextDelete">Delete</x:String>
+    <!--- «AddBranchPage» string values. -->
+    <x:String x:Key="AddBranchTitle">Add Shop Branch</x:String>
+    <x:String x:Key="AddBranchAddShopBranchHeader">Add Shop Branch</x:String>
+    <x:String x:Key="AddBranchTextStepOne">Step 1: Location Details</x:String>
+    <x:String x:Key="AddBranchEntryCountry">e.g., Czechia</x:String>
+    <x:String x:Key="AddBranchEntryCity">e.g., Kutná Hora</x:String>
+    <x:String x:Key="AddBranchEntryStreet">e.g., Barborská</x:String>
+    <x:String x:Key="AddBranchEntryStreetNumber">e.g., 1</x:String>
+    <x:String x:Key="AddBranchEntryZIP">e.g., 284 01</x:String>
+    <x:String x:Key="AddBranchTextStepTwo">Step 2: Contact Info</x:String>
+    <x:String x:Key="AddBranchEntryEmail">e.g., kutnahora@tapehub.cz</x:String>
+    <x:String x:Key="AddBranchEntryPhone">e.g., +420 111 222 333</x:String>
+    <x:String x:Key="AddBranchTextStepThree">Step 3: Shop Branch Details</x:String>
+    <x:String x:Key="AddBranchEntryShopBranchName">e.g., Kutná Hora Branch</x:String>
+    <x:String x:Key="AddBranchEntryShopBranchOpenedFrom">e.g., Opened From: 08:00</x:String>
+    <x:String x:Key="AddBranchEntryShopBranchClosedFrom">e.g., Closed From: 20:00</x:String>
+    <x:String x:Key="AddBranchEntryShopBranchStockQuantity">e.g., 0</x:String>
+    <x:String x:Key="AddBranchEntryShopBranchImagePath">e.g., shopbranch_6.png</x:String>
+    <x:String x:Key="AddBranchTextAddBranch">Add Branch</x:String>
+    <!--- «EditBranchPage» string values. -->
+    <x:String x:Key="EditBranchTitle">Edit Shop Branch</x:String>
+    <x:String x:Key="EditBranchTextSectionOne">Location Information</x:String>
+    <x:String x:Key="EditBranchEntryCountry">Country</x:String>
+    <x:String x:Key="EditBranchEntryCity">City</x:String>
+    <x:String x:Key="EditBranchEntryStreet">Street</x:String>
+    <x:String x:Key="EditBranchEntryStreetNumber">Number</x:String>
+    <x:String x:Key="EditBranchEntryZIP">ZIP Code</x:String>
+    <x:String x:Key="EditBranchTextSectionTwo">Contact Information</x:String>
+    <x:String x:Key="EditBranchEntryEmail">Email</x:String>
+    <x:String x:Key="EditBranchEntryPhone">Phone</x:String>
+    <x:String x:Key="EditBranchTextSectionThree">Shop Branch Information</x:String>
+    <x:String x:Key="EditBranchEntryName">Name</x:String>
+    <x:String x:Key="EditBranchEntryOpeningHours">Opening Hours</x:String>
+    <x:String x:Key="EditBranchEntryClosingHours">Closing Hours</x:String>
+    <x:String x:Key="EditBranchEntryStockQuantity">Stock Quantity</x:String>
+    <x:String x:Key="EditBranchEntryImagePath">Image Path</x:String>
+    <x:String x:Key="EditBranchTextSaveChanges">Save Changes</x:String>
+    <!--- «AddProductPage» and «EditProductPage» string values. -->
+    <x:String x:Key="AddProductTitle">Add Product</x:String>
+    <x:String x:Key="AddProductTextSaveChanges">Save Product</x:String>
+    <x:String x:Key="AddProductEntryTitle">e.g., The X-files</x:String>
+    <x:String x:Key="AddProductEntryDescription">e.g., A science fiction film</x:String>
+    <x:String x:Key="AddProductEntryPrice">49.9€</x:String>
+    <x:String x:Key="AddProductEntryImagePath">e.g., product_vhs_the_x_files.png</x:String>
+    <x:String x:Key="ProductTitle">Title</x:String>
+    <x:String x:Key="ProductDescription">Description</x:String>
+    <x:String x:Key="ProductPrice">Price (€)</x:String>
+    <x:String x:Key="ProductType">Type</x:String>
+    <x:String x:Key="ProductImagePath">Image Path</x:String>
+    <x:String x:Key="EditProductTitle">Edit Product</x:String>
+    <x:String x:Key="EditProductTextSaveChanges">Save Changes</x:String>
+</ResourceDictionary>
